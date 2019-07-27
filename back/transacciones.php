@@ -242,7 +242,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
-          <button type="button" id="guardarCat" class="btn btn-primary">Guardar</button>
+          <button type="button" id="guardarTra" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </div>

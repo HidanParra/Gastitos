@@ -45,18 +45,18 @@
       case "editar_admin":
         editar_admin();
       break;
-      //TRANSACCIONES
-      case "insertar_trans":
-        insertar_trans();
+      //EQUIPOS
+      case "insertar_equipo":
+        insertar_equipo();
       break;
-      case "editar_trans":
-        editar_trans();
+      case "editar_equipo":
+        editar_equipo();
       break;
-      case "eliminar_trans":
-          eliminar_trans();
+      case "eliminar_equipo":
+          eliminar_equipo();
       break;
-      case "consultar_trans":
-        consultar_trans());
+      case "consultar_equipo":
+        consultar_equipo();
       break;
       //USUARIOS
       case "insertar_user":
@@ -91,7 +91,7 @@
 
     $type=$db->select("administradores","*",["AND"=>["adm_email"=>$user,"adm_pass"=>$pass]]);
     create_session($user,$type);
-
+    
   }
 
 
@@ -201,15 +201,14 @@
     }
 
 //FUNCIONES DE EQUIPO
-  function insertar_trans(){
+  function insertar_equipo(){
     global $db;
     extract($_POST);
 
-      $insertar=$db ->insert("transacciones",["tra_nom" =>  $nom,
-                                              "tra_cant" => $cant,
-                                              "tra_tip" =>  $lista,
-                                              "tra_cat" =>  $listaa,
-                                              "tra_fa" => date("Y").date("m").date("d")]);
+      $insertar=$db ->insert("equipos",["epo_nom" => $nom,
+                                        "epo_sn" => $snu,
+                                        "epo_tip" =>$lista,
+                                        "epo_fa" => date("Y").date("m").date("d")]);
 
     if($insertar){
       echo 1;
@@ -218,38 +217,87 @@
     }
   }
 
-  function consultar_trans(){
+  function consultar_equipo(){
     global $db;
     extract($_POST);
 
-    $consultar = $db -> get("transacciones","*",["AND" => ["tra_id"=>$id]]);
+    $consultar = $db -> get("equipos","*",["AND" => ["epo_id"=>$id]]);
     echo json_encode($consultar);
 
   }
 
-  function editar_trans(){
+  function editar_equipo(){
     global $db;
     extract($_POST);
 
 
-      $editar=$db ->update("transacciones",["tra_nom" => $nom,
-                                            "tra_cant" => $cant,
-                                            "tra_tip" => $lista,
-                                            "tra_cat" => $listaa,],
-                                           ["tra_id"=>$id]);
+      $editar=$db ->update("equipos",["epo_nom" => $nom,
+                                      "epo_sn" => $snu,
+                                      "epo_tip" => $lista,],
+                                      ["epo_id"=>$id]);
 
   }
 
-  function eliminar_trans(){
+  function eliminar_equipo(){
         global $db;
         extract($_POST);
-        $eliminar = $db->delete("transacciones",["tra_id" => $id]);
+        $eliminar = $db->delete("equipos",["epo_id" => $id]);
         if($eliminar){
             echo "Registro eliminado";
         }else{
             echo "registro eliminado";
         }
     }
+
+//FUNCIONES DE USUARIOS
+function insertar_user(){
+  global $db;
+  extract($_POST);
+
+    $insertar=$db ->insert("persona",["per_nom" => $nom,
+                                      "per_dpto" =>$lista,
+                                      "per_pto" => $pto,
+                                      "per_fa" => date("Y").date("m").date("d")]);
+
+  if($insertar){
+    echo 1;
+  }else{
+    echo 2;
+  }
+}
+
+function consultar_user(){
+  global $db;
+  extract($_POST);
+
+  $consultar = $db -> get("persona","*",["AND" => ["per_id"=>$id]]);
+  echo json_encode($consultar);
+
+}
+
+function editar_user(){
+  global $db;
+  extract($_POST);
+
+
+    $editar=$db ->update("persona",["per_nom" => $nom,
+                                    "per_dpto" => $lista,
+                                    "per_pto" => $pto,],
+                                    ["per_id"=>$id]);
+
+}
+
+function eliminar_user(){
+      global $db;
+      extract($_POST);
+      $eliminar = $db->delete("persona",["per_id" => $id]);
+      if($eliminar){
+          echo "Registro eliminado";
+      }else{
+          echo "registro eliminado";
+      }
+  }
+
 //EXPORTACION
 
 ?>
