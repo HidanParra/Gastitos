@@ -71,6 +71,19 @@
       case "editar_user":
         editar_user();
       break;
+      //TRANSACCIONES
+      case "insertar_trans":
+        insertar_trans();
+      break;
+      case "consultar_trans":
+        consultar_trans();
+      break;
+      case "eliminar_trans":
+        eliminar_trans();
+      break;
+      case "editar_trans":
+        editar_trans();
+      break;
   }
 }
   //LOGIN
@@ -91,7 +104,7 @@
 
     $type=$db->select("administradores","*",["AND"=>["adm_email"=>$user,"adm_pass"=>$pass]]);
     create_session($user,$type);
-    
+
   }
 
 
@@ -106,7 +119,58 @@
       echo 1;
     }
   }
+//TRANSACCIONES
+function insertar_trans(){
+  global $db;
+  extract($_POST);
 
+  $insertar=$db -> insert("transacciones",["tra_nom" => $nom,
+                                           "tra_tip" => $lista,
+                                           "tra_cat" => $listaa,
+                                           "tra_cant" => $cant,
+                                           "tra_fa" => date("Y").date("m").date("d")]);
+
+  if($insertar){
+    echo 1;
+  }else{
+    echo 2;
+  }
+}
+
+function consultar_trans(){
+  global $db;
+  extract($_POST);
+
+  $consultar = $db -> get("transacciones","*",["AND" => ["tra_id"=>$id]]);
+  echo json_encode($consultar);
+
+}
+
+function editar_trans(){
+  global $db;
+  extract($_POST);
+
+  $editar = $db -> update("transacciones",["tra_nom" => $nom,
+                                           "tra_tip" => $lista,
+                                           "tra_cat" => $listaa,
+                                           "tra_cant" => $cant,],
+                                          ["tra_id" => $id]);
+
+}
+
+function eliminar_trans(){
+  global $db;
+  extract($_POST);
+
+  $eliminar = $db->delete("transacciones",["tra_id" => $id]);
+
+  if($eliminar){
+    echo 1;
+  }else{
+    echo 2;
+  }
+
+}
 //FUNCIONES DE DEPARTAMENTO
   function insertar_depto(){
     global $db;
