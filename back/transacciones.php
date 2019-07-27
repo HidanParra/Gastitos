@@ -150,12 +150,12 @@
                           <td><?php echo $tra["tra_cant"];?></td>
                           <!--<td><?php //echo $tra["tra_fa"];?></td>-->
                           <td>
-                            <a href="#" class="editar_equipo" data-id="<?php echo $tra["tra_id"];?>>">
+                            <a href="#" class="editar_trans" data-id="<?php echo $tra["tra_id"];?>>">
                               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
                           </td>
                           <td>
-                            <a href="#" class="eliminar_equipo" data-id="<?php echo $tra["tra_id"];?>">
+                            <a href="#" class="eliminar_trans" data-id="<?php echo $tra["tra_id"];?>">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </a>
                           </td>
