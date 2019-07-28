@@ -140,30 +140,18 @@
                             <td><?php echo $adm["adm_email"];?></td>
                             <td><?php echo $adm["adm_fa"];?></td>
                             <td>
-                              <a href="#" class="editar_admin" data-id="<?php echo $adm["adm_id"];?>">
+                              <a href="#" class="editar_user" data-id="<?php echo $adm["adm_id"];?>">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                             </td>
                             <td>
-                              <a href="#" class="eliminar_admin" data-id="<?php echo $adm["adm_id"];?>">
+                              <a href="#" class="eliminar_user" data-id="<?php echo $adm["adm_id"];?>">
                               <i class="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                             </td>
                           </tr>
                           <?php
                           }
-                          /*<tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter       </td>
-                          </tr>*/
                            ?>
                         </tbody>
                       </table>
@@ -198,7 +186,7 @@
 <div id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
   <div role="document" class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar administrador</strong>
+      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar Usuarios</strong>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">
@@ -220,7 +208,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
-        <button type="button" id="guardarAdm" class="btn btn-primary">Guardar</button>
+        <button type="button" id="guardarUsr" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>

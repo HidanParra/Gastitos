@@ -143,12 +143,12 @@
                             <td><?php echo $cat["tip_nom"];?></td>
                             <td><?php echo $cat["cat_fa"];?></td>
                             <td>
-                              <a href="#" class="editar_depto" data-id="<?php echo $cat["cat_id"];?>">
+                              <a href="#" class="editar_cat" data-id="<?php echo $cat["cat_id"];?>">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                             </td>
                             <td>
-                              <a href="#" class="eliminar_depto" data-id="<?php echo $cat["cat_id"];?>">
+                              <a href="#" class="eliminar_cat" data-id="<?php echo $cat["cat_id"];?>">
                               <i class="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                             </td>

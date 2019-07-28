@@ -19,45 +19,6 @@
       case "cerrar_sesion":
         cerrar_sesion();
       break;
-      //DEPARTAMENTOS
-      case "insertar_depto":
-        insertar_depto();
-      break;
-      case "editar_depto":
-        editar_depto();
-      break;
-      case "consultar_depto":
-        consultar_depto();
-      break;
-      case "eliminar_depto":
-        eliminar_depto();
-      break;
-      //ADMINISTRADORES
-      case "insertar_admin":
-        insertar_admin();
-      break;
-      case "eliminar_admin":
-        eliminar_admin();
-      break;
-      case "consultar_admin":
-        consultar_admin();
-      break;
-      case "editar_admin":
-        editar_admin();
-      break;
-      //EQUIPOS
-      case "insertar_equipo":
-        insertar_equipo();
-      break;
-      case "editar_equipo":
-        editar_equipo();
-      break;
-      case "eliminar_equipo":
-          eliminar_equipo();
-      break;
-      case "consultar_equipo":
-        consultar_equipo();
-      break;
       //USUARIOS
       case "insertar_user":
         insertar_user();
@@ -83,6 +44,19 @@
       break;
       case "editar_trans":
         editar_trans();
+      break;
+      //CATEGORIAS
+      case "insertar_cat":
+        insertar_cat();
+      break;
+      case "consultar_cat":
+        consultar_cat();
+      break;
+      case "eliminar_cat":
+        eliminar_cat();
+      break;
+      case "editar_cat":
+        editar_cat();
       break;
   }
 }
@@ -151,10 +125,15 @@ function editar_trans(){
   extract($_POST);
 
   $editar = $db -> update("transacciones",["tra_nom" => $nom,
+                                           "tra_cant" => $cant,
                                            "tra_tip" => $lista,
-                                           "tra_cat" => $listaa,
-                                           "tra_cant" => $cant,],
+                                           "tra_cat" => $listaa,],
                                           ["tra_id" => $id]);
+  if($editar){
+    echo 1;
+  }else{
+    echo 2;
+  }
 
 }
 
@@ -171,53 +150,60 @@ function eliminar_trans(){
   }
 
 }
-//FUNCIONES DE DEPARTAMENTO
-  function insertar_depto(){
-    global $db;
-    extract($_POST);
+//Categorias
+function insertar_cat(){
+  global $db;
+  extract($_POST);
 
-    $insertar=$db ->insert("departamentos",["dpto_nom" => $nom,
-                                            "dpto_fa" => date("Y").date("m").date("d")]);
+  $insertar = $db->insert("categorias",["cat_nom" => $nom,
+                                        "cat_tip" => $lista,
+                                        "cat_fa" => date("Y").date("m").date("d")]);
 
-    if($insertar){
-      echo 1;
-    }else{
-      echo 2;
-    }
+  if($insertar){
+    echo 1;
+  }else{
+    echo 2;
   }
 
-    function consultar_depto(){
-      global $db;
-      extract($_POST);
+}
+function editar_cat(){
+  global $db;
+  extract($_POST);
 
-      $consultar = $db -> get("departamentos","*",["AND" => ["dpto_id"=>$id]]);
-      echo json_encode($consultar);
+  $editar = $db ->update("categorias",["cat_nom" => $nom,
+                                       "cat_tip" => $lista,],
+                                      ["cat_id" => $id]);
 
-    }
+  if($editar){
+    echo 1;
+  }else{
+    echo 2;
+  }
+}
+function consultar_cat(){
+  global $db;
+  extract($_POST);
 
-    function editar_depto(){
-      global $db;
-      extract($_POST);
+  $consultar = $db ->get("categorias","*",["AND" => ["cat_id"=>$id]]);
+  echo json_encode($consultar);
 
+}
+function eliminar_cat(){
+  global $db;
+  extract($_POST);
 
-        $editar=$db ->update("departamentos",["dpto_nom" => $nom,],
-                                             ["dpto_id"=>$id]);
+  $eliminar = $db->delete("categorias",["cat_id" => $id]);
 
-    }
+  if($eliminar){
+    echo 1;
+  }else{
+    echo 2;
+  }
 
-  function eliminar_depto(){
-        global $db;
-        extract($_POST);
-        $eliminar = $db->delete("departamentos",["dpto_id" => $id]);
-        if($eliminar){
-            echo "Registro eliminado";
-        }else{
-            echo "registro eliminado";
-        }
-    }
+}
 
 //FUNCIONES DE ADMINISTRADORES
-  function insertar_admin(){
+  function insertar_user(){
     global $db;
     extract($_POST);
 
@@ -233,7 +219,7 @@ function eliminar_trans(){
     }
   }
 
-  function editar_admin(){
+  function editar_user(){
     global $db;
     extract($_POST);
 
@@ -244,7 +230,7 @@ function eliminar_trans(){
                                               ["adm_id"=>$id]);
   }
 
-  function consultar_admin(){
+  function consultar_user(){
     global $db;
     extract($_POST);
 
@@ -253,7 +239,7 @@ function eliminar_trans(){
 
   }
 
-  function eliminar_admin(){
+  function eliminar_user(){
         global $db;
         extract($_POST);
         $eliminar = $db->delete("administradores",["adm_id" => $id]);
@@ -263,105 +249,5 @@ function eliminar_trans(){
             echo "registro eliminado";
         }
     }
-
-//FUNCIONES DE EQUIPO
-  function insertar_equipo(){
-    global $db;
-    extract($_POST);
-
-      $insertar=$db ->insert("equipos",["epo_nom" => $nom,
-                                        "epo_sn" => $snu,
-                                        "epo_tip" =>$lista,
-                                        "epo_fa" => date("Y").date("m").date("d")]);
-
-    if($insertar){
-      echo 1;
-    }else{
-      echo 2;
-    }
-  }
-
-  function consultar_equipo(){
-    global $db;
-    extract($_POST);
-
-    $consultar = $db -> get("equipos","*",["AND" => ["epo_id"=>$id]]);
-    echo json_encode($consultar);
-
-  }
-
-  function editar_equipo(){
-    global $db;
-    extract($_POST);
-
-
-      $editar=$db ->update("equipos",["epo_nom" => $nom,
-                                      "epo_sn" => $snu,
-                                      "epo_tip" => $lista,],
-                                      ["epo_id"=>$id]);
-
-  }
-
-  function eliminar_equipo(){
-        global $db;
-        extract($_POST);
-        $eliminar = $db->delete("equipos",["epo_id" => $id]);
-        if($eliminar){
-            echo "Registro eliminado";
-        }else{
-            echo "registro eliminado";
-        }
-    }
-
-//FUNCIONES DE USUARIOS
-function insertar_user(){
-  global $db;
-  extract($_POST);
-
-    $insertar=$db ->insert("persona",["per_nom" => $nom,
-                                      "per_dpto" =>$lista,
-                                      "per_pto" => $pto,
-                                      "per_fa" => date("Y").date("m").date("d")]);
-
-  if($insertar){
-    echo 1;
-  }else{
-    echo 2;
-  }
-}
-
-function consultar_user(){
-  global $db;
-  extract($_POST);
-
-  $consultar = $db -> get("persona","*",["AND" => ["per_id"=>$id]]);
-  echo json_encode($consultar);
-
-}
-
-function editar_user(){
-  global $db;
-  extract($_POST);
-
-
-    $editar=$db ->update("persona",["per_nom" => $nom,
-                                    "per_dpto" => $lista,
-                                    "per_pto" => $pto,],
-                                    ["per_id"=>$id]);
-
-}
-
-function eliminar_user(){
-      global $db;
-      extract($_POST);
-      $eliminar = $db->delete("persona",["per_id" => $id]);
-      if($eliminar){
-          echo "Registro eliminado";
-      }else{
-          echo "registro eliminado";
-      }
-  }
-
-//EXPORTACION
 
 ?>
