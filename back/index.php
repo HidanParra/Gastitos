@@ -175,5 +175,6 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="js/charts-home.js"></script>
     <script src="js/front.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

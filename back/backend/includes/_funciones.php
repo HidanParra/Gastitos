@@ -19,6 +19,10 @@
       case "cerrar_sesion":
         cerrar_sesion();
       break;
+      //Recuperar
+      case "verificar_mail":
+        verificar_mail();
+      break;
       //USUARIOS
       case "insertar_user":
         insertar_user();
@@ -93,6 +97,19 @@
       echo 1;
     }
   }
+
+function verificar_mail(){
+  global $db;
+  extract($_POST);
+
+  $consultar=$db -> get("administradores","*",["AND" => ["adm_email" => $email]]);
+
+  if($consultar){
+    echo 1;
+  }else{
+    echo 2;
+  }
+}
 //TRANSACCIONES
 function insertar_trans(){
   global $db;

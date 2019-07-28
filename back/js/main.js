@@ -49,6 +49,34 @@ $("#login").click(function(){
   })
 });
 
+$("#recuperar").click(function(){
+  //alert("Todos envueltos por el aroma del hashis");
+  email=$("#email").val();
+  obj={
+    accion: "verificar_mail",
+    email: email
+  }
+
+  if(email==""){
+    alert("Ingresa un email");
+  }else{
+    $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "post",
+      datatype: "json",
+      data: obj,
+      success: function(data){
+        if(data==1){
+          alert("Se ha enviado el correo");
+          location.href="login.php";
+        }else{
+        alert("No existe el correo en nuestra BD");
+      }
+      }
+    })
+
+  }
+});
 //BOTON ACTIVAR FORMULARIO
 $("#nuevo").click(function(){
   //alert("puto");

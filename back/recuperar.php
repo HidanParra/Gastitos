@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Gastitos | Iniciar Sesion</title>
+    <title>Gastitos | Recuperar Password</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -35,7 +35,7 @@
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
-                    <h1>Accesa al Area Administrable</h1>
+                    <h1>Ingresa tu correo para recuperar tu contraseña</h1>
                   </div>
                   <p></p>
                 </div>
@@ -47,15 +47,11 @@
                 <div class="content">
                   <form  class="form-validate mb-4">
                     <div class="form-group">
-                      <input id="login-username" type="text" name="loginUsername" required data-msg="Por favor ingresa tu usuario" class="input-material">
-                      <label for="login-username" class="label-material">Usuario</label>
+                      <input id="email" type="email" name="loginUsername" required data-msg="Por favor ingresa tu correo" class="input-material">
+                      <label for="email" class="label-material">Correo Electronico</label>
                     </div>
-                    <div class="form-group">
-                      <input id="login-password" type="password" name="loginPassword" required data-msg="Por favor ingresa tu contraseña" class="input-material">
-                      <label for="login-password" class="label-material">Contrasena</label>
-                    </div>
-                    <button type="button" id="login" class="btn btn-primary">Inicia Sesion</button>
-                  </form><a href="recuperar.php" class="forgot-pass">¿Olvidaste tu contraseña?</a><br><small>¿No tienes cuenta? </small><a href="register.php" class="signup">Registrate</a>
+                    <button type="button" id="recuperar" class="btn btn-primary">Recuperar</button>
+                  </form><br><small>¿No tienes cuenta? </small><a href="register.php" class="signup">Registrate</a>
                 </div>
               </div>
             </div>
