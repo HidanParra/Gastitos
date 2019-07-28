@@ -42,8 +42,10 @@ $("#login").click(function(){
       }else if(data==1){
         alert("Exito");
         setTimeout(function(){ location.href='index.php'; }, 2000);
-      }else{
+      }else if(data==2){
         alert("contraseña incorreta");
+      }else if(data==3){
+        alert("Tu usuario debe ser activado por un Administrador")
       }
     }
   })
@@ -84,6 +86,47 @@ $("#nuevo").click(function(){
   $("#formulario").trigger("reset");
 });
 
+$(".activar").change(function(){
+  if(this.checked){
+  val=1;
+  id=$(this).data("id");
+  obj={
+    accion: "activar",
+    val: val,
+    id: $(this).data("id")
+  }
+  alert("Habilitado" + id);
+  $.ajax({
+    url: "backend/includes/_funciones.php",
+    type: "post",
+    datatype: "json",
+    data: obj,
+    success: function(data){
+      if(data==1){alert("usuario activado");}
+    }
+  })
+  location.reload();
+  }else{
+  val=2;
+  id=$(this).data("id");
+  obj={
+    accion: "activar",
+    val: val,
+    id: $(this).data("id")
+  }
+  alert("No habilitado" +id);
+  $.ajax({
+    url: "backend/includes/_funciones.php",
+    type: "post",
+    datatype: "json",
+    data: obj,
+    success: function(data){
+      if(data==1){alert("usuario desactivado");}
+    }
+  })
+  location.reload();
+  }
+});
 //Usuarios
 $("#guardarUsr").click(function(){
   //alert("puto 45");

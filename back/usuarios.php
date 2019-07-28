@@ -125,13 +125,14 @@
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Fecha de Alta</th>
+                            <th>Activado</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                           </tr>
                         </thead>
                         <tbody>
                           <?php
-                            $admins = $db->select("administradores",["administradores.adm_id", "administradores.adm_nom", "administradores.adm_email","administradores.adm_fa"]);
+                            $admins = $db->select("administradores",["administradores.adm_id", "administradores.adm_nom", "administradores.adm_email","administradores.adm_fa","administradores.adm_rol","administradores.adm_est"]);
                               foreach($admins as $key => $adm){
                           ?>
                           <tr>
@@ -139,6 +140,27 @@
                             <td><?php echo $adm["adm_nom"];?></td>
                             <td><?php echo $adm["adm_email"];?></td>
                             <td><?php echo $adm["adm_fa"];?></td>
+                            <?php
+                              $u = 2;
+                              $a = 1;
+                              //$consultar=$db -> get("administradores","*",["AND" => ["adm_rol" => $adm]]);
+                              if ($adm["adm_rol"] == $u){
+                                if($adm["adm_est"] == $a){
+                                ?>
+                                  <td><input type="checkbox" class="activar" data-id="<?php echo $adm["adm_id"];?>" name="" value="" checked></td>
+                                <?php
+                                }else{
+                            ?>
+                              <td><input type="checkbox" class="activar" data-id="<?php echo $adm["adm_id"];?>" name="" value=""></td>
+                            <?php
+                              }
+                            }
+                              if($adm["adm_rol"] == $a){
+                                ?>
+                              <td>  <input type="checkbox" class="" name="" value="" disabled> </td>
+                                <?php
+                              }
+                             ?>
                             <td>
                               <a href="#" class="editar_user" data-id="<?php echo $adm["adm_id"];?>">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

@@ -55,7 +55,7 @@
                       <label for="login-password" class="label-material">Contrasena</label>
                     </div>
                     <button type="button" id="login" class="btn btn-primary">Inicia Sesion</button>
-                  </form><a href="recuperar.php" class="forgot-pass">¿Olvidaste tu contraseña?</a><br><small>¿No tienes cuenta? </small><a href="register.php" class="signup">Registrate</a>
+                  </form><small>¿Olvidaste tu contraseña?</small><a href="recuperar.php" class="forgot-pass">Recuperala  </a><br><small>¿No tienes cuenta?  </small><a href="register.php" class="signup">Registrate</a>
                 </div>
               </div>
             </div>

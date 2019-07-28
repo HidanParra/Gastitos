@@ -23,6 +23,10 @@
       case "verificar_mail":
         verificar_mail();
       break;
+      //activar usuarios
+      case "activar":
+        activar();
+      break;
       //USUARIOS
       case "insertar_user":
         insertar_user();
@@ -69,18 +73,22 @@
 
     global $db;
     extract($_POST);
+    $activado=1;
     $conpassword=$db->select("administradores","*",["adm_pass"=>$pass]);#consulta para la contraseña
     $conuser=$db->select("administradores","*",["adm_email"=>$user]);#consulta para usuario
+    $conrol=$db->select("administradores","*",["adm_est"=>$activado]);#consulta para saber si el usuario puede iniciar sesion
 
-    if($conpassword && $conuser){
+    if($conpassword && $conuser && $conrol){
       echo 1;
     }elseif(!$conuser){
       echo 0;
     }elseif(!$conpassword){
       echo 2;
+    }elseif(!$conrol){
+      echo 3;
     }
 
-    $type=$db->select("administradores","*",["AND"=>["adm_email"=>$user,"adm_pass"=>$pass]]);
+    $type=$db->select("administradores","*",["AND"=>["adm_email"=>$user,"adm_pass"=>$pass,"adm_est"=>$activado]]);
     create_session($user,$type);
 
   }
@@ -98,6 +106,7 @@
     }
   }
 
+
 function verificar_mail(){
   global $db;
   extract($_POST);
@@ -109,6 +118,22 @@ function verificar_mail(){
   }else{
     echo 2;
   }
+}
+
+function activar(){
+  global $db;
+  extract($_POST);
+
+  $estatus=$db -> update("administradores",["adm_est" => $val,],
+                                           ["adm_id" => $id]);
+
+  if($estatus){
+    echo 1;
+  }else{
+    echo 2;
+  }
+
+
 }
 //TRANSACCIONES
 function insertar_trans(){
