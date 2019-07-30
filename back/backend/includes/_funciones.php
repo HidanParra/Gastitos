@@ -114,23 +114,23 @@
   }
 
 
-/*function verificar_mail(){
+function verificar_mail(){
   global $db;
   extract($_POST);
-
-  $m = "gastitos@daniel.com"
-  //$link = '<a>daniel.softenginesolutions.com.mx/back/cambio.php';
-  //$token = uniqid();
   $consultar=$db -> get("administradores","*",["AND" => ["adm_email" => $email]]);
 
-  //$insertar=$db -> update("administradores",["adm_token" => $token,], ["adm_email" => $email]);
+  $m = "gastitos@daniel.com";
+  //$link = '<a>daniel.softenginesolutions.com.mx/back/cambio.php';
+  $token = uniqid();
+  $insertar=$db -> update("administradores",["adm_token" => $token,], ["adm_email" => $email]);
 
-  if($consultar && $insertar){
+  if($consultar){
     echo 1;
+
     //Datos para el correo
     $destino= $email;
     $asunto='Recuperar Contraseña';
-    $header='Click en este Link: <a href="http://daniel.softenginesolutions.com.mx/back/cambio.php?token='.$token.'"> este link</a>';
+    $header="Click en este Link: http://daniel.softenginesolutions.com.mx/back/cambio.php?token=$token";
     $from="De: " .$m;
 
     //enviando mensaje
@@ -140,7 +140,7 @@
     echo 2;
   }
 
-}*/
+}
 
 function registrar(){
   global $db;
