@@ -23,9 +23,16 @@
       case "verificar_mail":
         verificar_mail();
       break;
+      //cambiar contraseñarra
+      case "cambiarP":
+        cambiarP();
       //activar usuarios
       case "activar":
         activar();
+      break;
+      // REGISTRAR USUARIOS DESDE EL Login
+      case "registrar":
+        registrar();
       break;
       //USUARIOS
       case "insertar_user":
@@ -107,16 +114,53 @@
   }
 
 
-function verificar_mail(){
+/*function verificar_mail(){
   global $db;
   extract($_POST);
 
+  $m = "gastitos@daniel.com"
+  //$link = '<a>daniel.softenginesolutions.com.mx/back/cambio.php';
+  //$token = uniqid();
+  $consultar=$db -> get("administradores","*",["AND" => ["adm_email" => $email]]);
+
+  //$insertar=$db -> update("administradores",["adm_token" => $token,], ["adm_email" => $email]);
+
+  if($consultar && $insertar){
+    echo 1;
+    //Datos para el correo
+    $destino= $email;
+    $asunto='Recuperar Contraseña';
+    $header='Click en este Link: <a href="http://daniel.softenginesolutions.com.mx/back/cambio.php?token='.$token.'"> este link</a>';
+    $from="De: " .$m;
+
+    //enviando mensaje
+    $enviar= mail($destino,$asunto,$header,$from);
+
+  }else{
+    echo 2;
+  }
+
+}*/
+
+function registrar(){
+  global $db;
+  extract($_POST);
+
+  $r = 2;
+  $e = 2;
   $consultar=$db -> get("administradores","*",["AND" => ["adm_email" => $email]]);
 
   if($consultar){
     echo 1;
   }else{
     echo 2;
+    $registrar = $db -> insert("administradores",["adm_nom" => $nom,
+                                                   "adm_email" => $email,
+                                                   "adm_pass" => $pass,
+                                                   "adm_fa" => date("Y").date("m").date("d"),
+                                                   "adm_rol" => $r,
+                                                   "adm_est" => $e
+                                                 ]);
   }
 }
 
@@ -132,7 +176,19 @@ function activar(){
   }else{
     echo 2;
   }
+}
 
+function cambiarP(){
+  global $db;
+  extract($_POST);
+
+  $cambiarP=$db -> update("administradores",["adm_pass" => $pass,],);
+
+  if($cambiarP){
+    echo 1;
+  }else{
+    echo 2;
+  }
 
 }
 //TRANSACCIONES

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Gastitos | Registrate</title>
+    <title>Gastitos | Cambio de Password</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -35,37 +35,27 @@
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
-                    <h1>Registrate para acceder a tu Dashboard</h1>
+                    <h1>Ingresa tu nueva contraseña</h1>
                   </div>
                   <p></p>
                 </div>
               </div>
             </div>
             <!-- Form Panel    -->
-            <div class="col-lg-6 bg-white">
+            <div class="col-lg-6">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  <form class="text-left form-validate">
-                    <div class="form-group-material">
-                      <input id="register-username" type="text" name="registerUsername" required data-msg="Please enter your username" class="input-material">
-                      <label for="register-username" class="label-material">Usuario</label>
+                  <form  class="form-validate mb-4">
+                    <div class="form-group">
+                      <input id="pass1" type="password" name="pass1" required data-msg="Por favor ingresa la contraseña" class="input-material">
+                      <label for="pass1" class="label-material">Nueva Contraseña</label>
                     </div>
-                    <div class="form-group-material">
-                      <input id="register-email" type="email" name="registerEmail" required data-msg="Please enter a valid email address" class="input-material">
-                      <label for="register-email" class="label-material">Email      </label>
+                    <div class="form-group">
+                      <input id="pass2" type="password" name="pass2" required data-msg="Por favor ingresa la contraseña" class="input-material">
+                      <label for="pass2" class="label-material">Confirmar Nueva Contraseña</label>
                     </div>
-                    <div class="form-group-material">
-                      <input id="register-password" type="password" name="registerPassword" required data-msg="Please enter your password" class="input-material">
-                      <label for="register-password" class="label-material">Contrasena        </label>
-                    </div>
-                    <div class="form-group terms-conditions text-center">
-                      <input id="register-agree" name="registerAgree" type="checkbox" required value="1" data-msg="Your agreement is required" class="checkbox-template">
-                      <label for="register-agree">Estoy de acuerdo con los terminos y condiciones</label>
-                    </div>
-                    <div class="form-group text-center">
-                      <input id="register" type="submit" value="Registrarme" class="btn btn-primary">
-                    </div>
-                  </form><small>¿Ya tienes una cuenta? </small><a href="login.php" class="signup">Inicia Sesion</a>
+                    <button type="button" id="cambiarP" class="btn btn-primary">Aceptar</button>
+                  </form><br><!--<small>Accede al dashboard &nbsp; </small><a href="login.php" class="signup">Iniciar sesión</a>-->
                 </div>
               </div>
             </div>
@@ -73,7 +63,7 @@
         </div>
       </div>
       <div class="copyrights text-center">
-        <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
+        <p>Design by <a href="https://bootstrapious.com/p/bootstrap-4-dark-admin" class="external">Bootstrapious</a></p>
         <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
       </div>
     </div>
@@ -85,5 +75,6 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="js/front.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

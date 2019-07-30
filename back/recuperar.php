@@ -51,7 +51,7 @@
                       <label for="email" class="label-material">Correo Electronico</label>
                     </div>
                     <button type="button" id="recuperar" class="btn btn-primary">Recuperar</button>
-                  </form><br><small>¿No tienes cuenta? </small><a href="register.php" class="signup">Registrate</a>
+                  </form><br><small>¿No tienes cuenta? </small><a href="registro.php" class="signup">Registrate</a>
                 </div>
               </div>
             </div>

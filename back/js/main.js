@@ -45,7 +45,7 @@ $("#login").click(function(){
       }else if(data==2){
         alert("contraseña incorreta");
       }else if(data==3){
-        alert("Tu usuario debe ser activado por un Administrador")
+        alert("Tu usuario debe ser activado por un Administrador");
       }
     }
   })
@@ -79,6 +79,73 @@ $("#recuperar").click(function(){
 
   }
 });
+
+//registrar desde el login
+$("#registrar").click(function(){
+  //alert("si funciona");
+  nom=$("#nom").val();
+  email=$("#email").val();
+  pass=$("#pass").val();
+  console.log(email);
+  obj={
+    accion: "registrar",
+    nom: nom,
+    email: email,
+    pass: pass
+  }
+
+  $.ajax({
+    url: "backend/includes/_funciones.php",
+    type: "post",
+    datatype: "json",
+    data: obj,
+    success: function(data){
+      if(data==1){
+        alert("Ya existe una cuenta con este email, ingresa otro");
+      }
+      if(data==2){
+        alert("Registro exitoso, espera la activacion de tu usuario");
+        //location.href="login.php";
+        }
+      }
+    })
+});
+
+//Cambiar contraseña
+$("#cambiarP").click(function(){
+  console.log("chinga tu madre");
+  pass1=$("#pass1").val();
+  pass2=$("#pass2").val();
+
+  if(pass1=="" || pass2==""){
+    alert("No dejes campos vacios");
+  }
+  if(pass1 == pass2){
+    pass = pass2;
+    obj = {
+      accion: "cambiarP",
+      pass: pass
+    }
+    $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "post",
+      datatype: "json",
+      data: obj,
+      success: function(data){
+        if(data==1){
+          alert("Contraseña cambiada");
+          location.href="login.php";
+        }else{
+        alert("Algo salio mal :(");
+        }
+      }
+    })
+    //alert("Contraseñas iguales");
+  }else{
+    alert("Verifique su contraseña");
+  }
+});
+
 //BOTON ACTIVAR FORMULARIO
 $("#nuevo").click(function(){
   //alert("puto");
