@@ -26,6 +26,7 @@
       //cambiar contraseñarra
       case "cambiarP":
         cambiarP();
+      break;
       //activar usuarios
       case "activar":
         activar();
@@ -126,11 +127,12 @@ function verificar_mail(){
 
   if($consultar){
     echo 1;
+    //echo header;
 
     //Datos para el correo
     $destino= $email;
     $asunto='Recuperar Contraseña';
-    $header="Click en este Link: http://daniel.softenginesolutions.com.mx/back/cambio.php?token=$token";
+    $header="Click en este Link: http://hashi.infosistemasunid.com/back/cambio.php?token=$token";
     $from="De: " .$m;
 
     //enviando mensaje
@@ -304,11 +306,14 @@ function eliminar_cat(){
   function insertar_user(){
     global $db;
     extract($_POST);
+    $fecha = date("Y-m-d");
 
-    $insertar =$db ->insert("administradores", ["adm_nom" => $nom,
-                                                "adm_email"=>$email,
-                                                "adm_pass"=>$pass,
-                                                "adm_fa"=> date("Y").date("m").date("d")]);
+    $insertar = $db -> insert("administradores",["adm_nom" => $nom,
+                                                   "adm_email" => $email,
+                                                   "adm_pass" => $pass,
+                                                   "adm_fa" => date("Y").date("m").date("d"),
+                                                   "adm_est" => 2,
+                                                   "adm_rol" => 2]);
 
    if($insertar){
       echo 1;
@@ -333,6 +338,7 @@ function eliminar_cat(){
     extract($_POST);
 
     $consultar = $db -> get("administradores","*",["AND" => ["adm_id"=>$id]]);
+    $token = $consultar["adm_token"];
     echo json_encode($consultar);
 
   }

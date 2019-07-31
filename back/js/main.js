@@ -116,6 +116,7 @@ $("#cambiarP").click(function(){
   console.log("chinga tu madre");
   pass1=$("#pass1").val();
   pass2=$("#pass2").val();
+  url=location.href;
 
   if(pass1=="" || pass2==""){
     alert("No dejes campos vacios");
@@ -136,7 +137,7 @@ $("#cambiarP").click(function(){
           alert("Contraseña cambiada");
           location.href="login.php";
         }else{
-        alert("Algo salio mal :(");
+        alert("Algo salio mal :( ");
         }
       }
     })
@@ -211,7 +212,7 @@ $("#guardarUsr").click(function(){
   obj["accion"]="editar_user";
      obj["id"]=$(this).data("id");
    $(this).removeData("edicion").removeData("id");
-  }
+ }
 
   if(nom=="" || email=="" || pass==""){
     alert("No dejes campos vacios");
