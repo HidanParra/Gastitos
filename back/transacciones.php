@@ -148,7 +148,7 @@
                           <td><?php echo $tra["cat_nom"];?></td>
                           <td><?php echo $tra["tip_nom"];?></td>
                           <td><?php echo $tra["tra_cant"];?></td>
-                      
+
                           <td>
                             <a href="#" class="editar_trans" data-id="<?php echo $tra["tra_id"];?>">
                               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

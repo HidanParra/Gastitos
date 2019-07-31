@@ -74,6 +74,10 @@
       case "editar_cat":
         editar_cat();
       break;
+      //contactar
+      case "contactar":
+        contactar();
+      break;
   }
 }
   //LOGIN
@@ -353,5 +357,25 @@ function eliminar_cat(){
             echo "registro eliminado";
         }
     }
+
+  function contactar(){
+    extract($_POST);
+    $destino="s.piopietrelchina@gmail.com";
+    $asunto="Contacto";
+    $from = $email;
+
+    $header="De: $nom \n";
+    $header.=" $titulo \n";
+    $header.="Mensaje: $mensaje \n";
+
+    $enviar= mail($destino,$asunto,$header,$from);
+
+    if($enviar){
+      echo 1;
+    }else{
+      echo 2;
+    }
+
+  }
 
 ?>

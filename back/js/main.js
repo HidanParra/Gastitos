@@ -422,6 +422,44 @@ $(document).on("click", ".eliminar_cat", function(){
   location.reload();
 });
 
+//comentarios
+$("#contact").click(function(e){
+  e.preventDefault();
+  nom=$("#nom").val();
+  email=$("#email").val();
+  titulo=$("#titulo").val();
+  mensaje=$("#mensaje").val();
+  obj={
+    accion: "contactar",
+    nom:nom,
+    email:email,
+    titulo:titulo,
+    mensaje:mensaje
+  }
+
+  if(nom=="" || email=="" || titulo=="" || mensaje==""){
+    alert("No dejes campos vacios");
+    return;
+  }else{
+    $.ajax({
+      url: "back/backend/includes/_funciones.php",
+      type: "POST",
+      dataType: "json",
+      data: obj,
+      success: function(data){
+          if(data==1){
+            alert("Se ha enviado tu solicitud");
+          }
+          if(data==2){
+            alert("Ooops! Algo salio mal :( ");
+            //console.log(obj);
+          }
+      }
+    })
+   location.reload();
+  }
+
+});
 
 //FIN DOCUMENT READY
 });
