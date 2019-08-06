@@ -1,8 +1,3 @@
-<?php
-  require_once 'backend/includes/_db.php';
-  require_once 'backend/includes/_funciones.php';
-  global $db;
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -31,12 +26,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
-    <?php
-      if(array_key_exists($_GET['token'])){
-        $consultar = $db -> get("administradores", "*" ,["AND" => ["adm_token" => token]]);
-      }
-      if($consultar){
-     ?>
     <div class="login-page">
       <div class="container d-flex align-items-center">
         <div class="form-holder has-shadow">
@@ -53,9 +42,6 @@
               </div>
             </div>
             <!-- Form Panel    -->
-            <?php
-                $insertar = $db -> update("administradores", ["adm_token" => null], ["adm_token" => token]);
-             ?>
             <div class="col-lg-6">
               <div class="form d-flex align-items-center">
                 <div class="content">
@@ -76,27 +62,6 @@
           </div>
         </div>
       </div>
-      <?php
-    }else{
-      ?>
-      <div class="login-page">
-        <div class="container d-flex align-items-center">
-          <div class="form-holder has-shadow">
-            <div class="row">
-              <!-- Logo & Information Panel-->
-              <div class="col-lg-6">
-                <div class="info d-flex align-items-center">
-                  <div class="content">
-                    <div class="logo">
-                      <h1>Pagina no encontrada 404 :(</h1>
-                    </div>
-                    <p></p>
-                  </div>
-                </div>
-              </div>
-    <?php
-          }
-     ?>
       <div class="copyrights text-center">
         <p>Design by <a href="https://bootstrapious.com/p/bootstrap-4-dark-admin" class="external">Bootstrapious</a></p>
         <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->

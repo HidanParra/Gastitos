@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -47,7 +48,7 @@
                 <div class="content">
                   <form  class="form-validate mb-4">
                     <div class="form-group">
-                      <input id="login-username" type="text" name="loginUsername" required data-msg="Por favor ingresa tu usuario" class="input-material">
+                      <input id="login-username" type="text" name="loginUsername" autocomplete="off" required data-msg="Por favor ingresa tu usuario" class="input-material">
                       <label for="login-username" class="label-material">Usuario</label>
                     </div>
                     <div class="form-group">
@@ -76,5 +77,6 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="js/front.js"></script>
     <script src="js/main.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </body>
 </html>

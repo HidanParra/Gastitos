@@ -12,10 +12,10 @@ $("#logout").click(function(){
         data:obj,
         success:function(data){
             if(data==1){
-              alert("sesion cerrada");
+              swal("sesion cerrada");
               location.href="login.php";
             }else{
-              alert("Ocurrio un error vuelva a intentarlo");
+              swal("Ocurrio un error vuelva a intentarlo");
             }
         }
     })
@@ -38,14 +38,14 @@ $("#login").click(function(){
     data:obj,
     success:function(data){
       if(data==0){
-        alert("El usuario es incorrecto");
+        swal("El usuario es incorrecto");
       }else if(data==1){
-        alert("Exito");
+        swal("Exito");
         setTimeout(function(){ location.href='index.php'; }, 2000);
       }else if(data==2){
-        alert("contraseña incorreta");
+        swal("contraseña incorreta");
       }else if(data==3){
-        alert("Tu usuario debe ser activado por un Administrador");
+        swal("Tu usuario debe ser activado por un Administrador");
       }
     }
   })
@@ -60,7 +60,7 @@ $("#recuperar").click(function(){
   }
 
   if(email==""){
-    alert("Ingresa un email");
+    swal("Ingresa un email");
   }else{
     $.ajax({
       url: "backend/includes/_funciones.php",
@@ -69,10 +69,10 @@ $("#recuperar").click(function(){
       data: obj,
       success: function(data){
         if(data==1){
-          alert("Se ha enviado el correo");
+          swal("Se ha enviado el correo");
           location.href="login.php";
         }else{
-        alert("No existe el correo en nuestra BD");
+        swal("No existe el correo en nuestra BD");
       }
       }
     })
@@ -101,10 +101,10 @@ $("#registrar").click(function(){
     data: obj,
     success: function(data){
       if(data==1){
-        alert("Ya existe una cuenta con este email, ingresa otro");
+        swal("Ya existe una cuenta con este email, ingresa otro");
       }
       if(data==2){
-        alert("Registro exitoso, espera la activacion de tu usuario");
+        swal("Registro exitoso, espera la activacion de tu usuario");
         //location.href="login.php";
         }
       }
@@ -116,10 +116,9 @@ $("#cambiarP").click(function(){
   console.log("chinga tu madre");
   pass1=$("#pass1").val();
   pass2=$("#pass2").val();
-  url=location.href;
 
   if(pass1=="" || pass2==""){
-    alert("No dejes campos vacios");
+    swal("No dejes campos vacios");
   }
   if(pass1 == pass2){
     pass = pass2;
@@ -134,16 +133,17 @@ $("#cambiarP").click(function(){
       data: obj,
       success: function(data){
         if(data==1){
-          alert("Contraseña cambiada");
+          swal("Contraseña cambiada");
           location.href="login.php";
         }else{
-        alert("Contraseña cambiada :) ");
+        swal("Contraseña cambniada :(");
+			location.href="login.php";
         }
       }
     })
     //alert("Contraseñas iguales");
   }else{
-    alert("Verifique su contraseña");
+    swal("Verifique su contraseña");
   }
 });
 
@@ -170,7 +170,7 @@ $(".activar").change(function(){
     datatype: "json",
     data: obj,
     success: function(data){
-      if(data==1){alert("usuario activado");}
+      if(data==1){swal("usuario activado");}
     }
   })
   location.reload();
@@ -182,14 +182,14 @@ $(".activar").change(function(){
     val: val,
     id: $(this).data("id")
   }
-  alert("No habilitado" +id);
+  swal("No habilitado" +id);
   $.ajax({
     url: "backend/includes/_funciones.php",
     type: "post",
     datatype: "json",
     data: obj,
     success: function(data){
-      if(data==1){alert("usuario desactivado");}
+      if(data==1){swal("usuario desactivado");}
     }
   })
   location.reload();
@@ -212,10 +212,10 @@ $("#guardarUsr").click(function(){
   obj["accion"]="editar_user";
      obj["id"]=$(this).data("id");
    $(this).removeData("edicion").removeData("id");
- }
+  }
 
   if(nom=="" || email=="" || pass==""){
-    alert("No dejes campos vacios");
+    swal("No dejes campos vacios");
     return;
   }else{
     $.ajax({
@@ -224,7 +224,7 @@ $("#guardarUsr").click(function(){
       datatype: "json",
       data: obj,
       success: function(data){
-        if(data==1){alert("insercion");}
+        if(data==1){swal("insercion");}
       }
     })
     location.reload();
@@ -262,7 +262,7 @@ $(document).on("click", ".eliminar_user", function(){
       dataType: "json",
       data: obj,
       success: function(data){
-          if(data==1){alert("logrado");}else{alert("no logrado");}
+          if(data==1){swal("logrado");}else{swal("no logrado");}
       }
   })
   location.reload();
@@ -286,13 +286,13 @@ $("#guardarTra").click(function(){
   if($(this).data("edicion")==1){
 
   obj["accion"]="editar_trans";
-  alert("neptuno");
+  swal("neptuno");
    obj["id"]=$(this).data("id");
    $(this).removeData("edicion").removeData("id");
   }
 
   if(nom=="" || cant=="" || lista==0 || listaa==0){
-    alert("No dejes campos vacios");
+    swal("No dejes campos vacios");
     return;
   }else{
     $.ajax({
@@ -301,7 +301,7 @@ $("#guardarTra").click(function(){
       datatype: "json",
       data: obj,
       success: function(data){
-        if(data==1){alert("subete y ya veras");}
+        if(data==1){swal("subete y ya veras");}
       }
     })
     location.reload();
@@ -343,7 +343,7 @@ $(document).on("click", ".eliminar_trans", function(){
       dataType: "json",
       data: obj,
       success: function(data){
-          if(data==1){alert("logrado");}else{alert("no logrado");}
+          if(data==1){swal("logrado");}else{swal("no logrado");}
       }
   })
   location.reload();
@@ -362,13 +362,13 @@ $("#guardarCat").click(function(){
   if($(this).data("edicion")==1){
 
   obj["accion"]="editar_cat";
-  alert("neptuno");
+  swal("neptuno");
    obj["id"]=$(this).data("id");
    $(this).removeData("edicion").removeData("id");
   }
 
   if(nom=="" || lista==0 ){
-    alert("No dejes campos vacios");
+    swal("No dejes campos vacios");
     return;
   }else{
     $.ajax({
@@ -377,7 +377,7 @@ $("#guardarCat").click(function(){
       datatype: "json",
       data: obj,
       success: function(data){
-        if(data==1){alert("categoria ");}
+        if(data==1){swal("categoria ");}
       }
     })
     location.reload();
@@ -416,13 +416,13 @@ $(document).on("click", ".eliminar_cat", function(){
       dataType: "json",
       data: obj,
       success: function(data){
-          if(data==1){alert("logrado");}else{alert("no logrado");}
+          if(data==1){swal("logrado");}else{swal("no logrado");}
       }
   })
   location.reload();
 });
 
-//comentarios
+//CONTACTO
 $("#contact").click(function(e){
   e.preventDefault();
   nom=$("#nom").val();
@@ -438,7 +438,8 @@ $("#contact").click(function(e){
   }
 
   if(nom=="" || email=="" || titulo=="" || mensaje==""){
-    alert("No dejes campos vacios");
+	swal("No dejes campos vacios ");
+    //alert("No dejes campos vacios");
     return;
   }else{
     $.ajax({
@@ -448,15 +449,17 @@ $("#contact").click(function(e){
       data: obj,
       success: function(data){
           if(data==1){
-            alert("Se ha enviado tu solicitud");
+			swal("Se ha enviado tu solicitud");  
+            //alert("Se ha enviado tu solicitud");
+			location.reload();
           }
           if(data==2){
-            alert("Ooops! Algo salio mal :( ");
+            swal("Ooops! Algo salio mal :( ");
             //console.log(obj);
           }
       }
     })
-   location.reload();
+   
   }
 
 });

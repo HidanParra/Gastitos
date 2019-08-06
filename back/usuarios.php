@@ -23,6 +23,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -104,7 +105,7 @@
           <!-- Breadcrumb-->
           <div class="container-fluid">
             <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
               <li class="breadcrumb-item active">Usuarios        </li>
             </ul>
           </div>
@@ -202,6 +203,7 @@
       <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
       <script src="js/front.js"></script>
       <script src="js/main.js"></script>
+	  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </body>
 </html>
 <!-- Modal-->
@@ -216,15 +218,15 @@
         <form id="formulario">
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" id="nom" placeholder="Nombre" class="form-control">
+            <input type="text" id="nom" autocomplete="off" placeholder="Nombre" class="form-control">
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="email"  id="email" placeholder="Email" class="form-control">
+            <input type="email"  id="email" autocomplete="off" placeholder="Email" class="form-control">
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" id="pass" placeholder="Password" class="form-control">
+            <input type="password" id="pass" autocomplete="off" placeholder="Password" class="form-control">
           </div>
         </form>
       </div>

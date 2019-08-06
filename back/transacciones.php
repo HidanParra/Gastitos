@@ -22,6 +22,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -148,7 +149,7 @@
                           <td><?php echo $tra["cat_nom"];?></td>
                           <td><?php echo $tra["tip_nom"];?></td>
                           <td><?php echo $tra["tra_cant"];?></td>
-
+                      
                           <td>
                             <a href="#" class="editar_trans" data-id="<?php echo $tra["tra_id"];?>">
                               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -190,6 +191,7 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="js/front.js"></script>
     <script src="js/main.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </body>
   </html>
   <!-- Modal-->
@@ -204,11 +206,11 @@
           <form id="formulario">
             <div class="form-group">
               <label>Nombre de la Transaccion</label>
-              <input type="text" id="nom" placeholder="Nombre" class="form-control">
+              <input type="text" id="nom" autocomplete="off" placeholder="Nombre" class="form-control">
             </div>
             <div class="form-group">
               <label>Cantidad de la Transaccion</label>
-              <input type="text" id="cant" placeholder="Cantidad" class="form-control">
+              <input type="text" id="cant" autocomplete="off" placeholder="Cantidad" class="form-control">
             </div>
             <div class="form-group">
               <label>Tipo de Transaccion</label>
@@ -229,7 +231,6 @@
               <select id="listaa" class="form-control">
                 <option value="0">Seleccionar Categoria</option>
                     <?php
-                        
                             $cats = $db->select("categorias","*");
                             foreach ($cats as $key => $cat) {
                         ?>

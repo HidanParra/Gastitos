@@ -26,7 +26,6 @@
       //cambiar contraseñarra
       case "cambiarP":
         cambiarP();
-      break;
       //activar usuarios
       case "activar":
         activar();
@@ -74,10 +73,9 @@
       case "editar_cat":
         editar_cat();
       break;
-      //contactar
-      case "contactar":
-        contactar();
-      break;
+	  case "contactar":
+		contactar();
+	  break;
   }
 }
   //LOGIN
@@ -131,7 +129,6 @@ function verificar_mail(){
 
   if($consultar){
     echo 1;
-    //echo header;
 
     //Datos para el correo
     $destino= $email;
@@ -310,14 +307,11 @@ function eliminar_cat(){
   function insertar_user(){
     global $db;
     extract($_POST);
-    $fecha = date("Y-m-d");
 
-    $insertar = $db -> insert("administradores",["adm_nom" => $nom,
-                                                   "adm_email" => $email,
-                                                   "adm_pass" => $pass,
-                                                   "adm_fa" => date("Y").date("m").date("d"),
-                                                   "adm_est" => 2,
-                                                   "adm_rol" => 2]);
+    $insertar =$db ->insert("administradores", ["adm_nom" => $nom,
+                                                "adm_email"=>$email,
+                                                "adm_pass"=>$pass,
+                                                "adm_fa"=> date("Y").date("m").date("d")]);
 
    if($insertar){
       echo 1;
@@ -342,7 +336,6 @@ function eliminar_cat(){
     extract($_POST);
 
     $consultar = $db -> get("administradores","*",["AND" => ["adm_id"=>$id]]);
-    $token = $consultar["adm_token"];
     echo json_encode($consultar);
 
   }
@@ -360,12 +353,12 @@ function eliminar_cat(){
 
   function contactar(){
     extract($_POST);
-    $destino="s.piopietrelchina@gmail.com";
+    $destino="hidan.parra@gmail.com";
     $asunto="Contacto";
     $from = $email;
 
     $header="De: $nom \n";
-    $header.=" $titulo \n";
+    $header.="Titulo del Mensaje: $titulo \n";
     $header.="Mensaje: $mensaje \n";
 
     $enviar= mail($destino,$asunto,$header,$from);
