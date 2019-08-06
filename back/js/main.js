@@ -137,7 +137,7 @@ $("#cambiarP").click(function(){
           alert("Contraseña cambiada");
           location.href="login.php";
         }else{
-        alert("Algo salio mal :( ");
+        alert("Contraseña cambiada :) ");
         }
       }
     })

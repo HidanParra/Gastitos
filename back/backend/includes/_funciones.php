@@ -136,7 +136,7 @@ function verificar_mail(){
     //Datos para el correo
     $destino= $email;
     $asunto='Recuperar Contraseña';
-    $header="Click en este Link: http://hashi.infosistemasunid.com/back/cambio.php?token=$token";
+    $header="Click en este Link: http://project-hashi.com/back/cambio.php?token=$token";
     $from="De: " .$m;
 
     //enviando mensaje

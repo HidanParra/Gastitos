@@ -229,6 +229,7 @@
               <select id="listaa" class="form-control">
                 <option value="0">Seleccionar Categoria</option>
                     <?php
+                        
                             $cats = $db->select("categorias","*");
                             foreach ($cats as $key => $cat) {
                         ?>
