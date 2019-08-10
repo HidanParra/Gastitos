@@ -136,11 +136,12 @@
                         </thead>
                         <tbody>
                           <?php
+                            $i=1;
                             $admins = $db->select("administradores",["administradores.adm_id", "administradores.adm_nom", "administradores.adm_email","administradores.adm_fa","administradores.adm_rol","administradores.adm_est"]);
                               foreach($admins as $key => $adm){
                           ?>
                           <tr>
-                            <th scope="row"><?php echo $adm["adm_id"];?></th>
+                            <th scope="row"><?php echo $i++;?></th>
                             <td><?php echo $adm["adm_nom"];?></td>
                             <td><?php echo $adm["adm_email"];?></td>
                             <td><?php echo $adm["adm_fa"];?></td>
