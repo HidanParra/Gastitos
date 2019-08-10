@@ -135,6 +135,7 @@
                       </thead>
                       <tbody>
                         <?php
+                        $i=1;
                         $trans = $db->select("transacciones",["[><]tipo" => ["tra_tip" => "tip_id"],
                                                               "[><]categorias" => ["tra_cat" => "cat_id"]
                                                             ],
@@ -147,7 +148,7 @@
                           foreach($trans as $key => $tra){
                           ?>
                         <tr>
-                          <th scope="row"><?php echo $tra["tra_id"];?></th>
+                          <th scope="row"><?php echo $i++;?></th>
                           <td><?php echo $tra["tra_nom"];?></td>
                           <td><?php echo $tra["cat_nom"];?></td>
                           <td><?php echo $tra["tip_nom"];?></td>
