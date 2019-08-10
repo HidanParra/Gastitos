@@ -76,6 +76,9 @@
 	  case "contactar":
 		contactar();
 	  break;
+    case "carga_foto":
+      carga_foto();
+    break;
   }
 }
   //LOGIN
@@ -194,6 +197,22 @@ function cambiarP(){
   }
 
 }
+
+function carga_foto(){
+      if(isset($_FILES["archivo"])){
+          $foto=$_FILES["archivo"]["name"];
+          $temporal=$_FILES["archivo"]["tmp_name"];
+          $carpeta="../../img/";
+          $arreglo["texto"]="Error";
+          $arreglo["status"]=0;
+          if(move_uploaded_file($temporal , $carpeta.$foto)){
+              $arreglo["texto"]="Subida exitosa";
+              $arreglo["archivo"]=$carpeta.$foto;
+              $arreglo["status"]=1;
+          }
+          echo json_encode($arreglo);
+      }
+  }
 //TRANSACCIONES
 function insertar_trans(){
   global $db;
@@ -311,6 +330,9 @@ function eliminar_cat(){
     $insertar =$db ->insert("administradores", ["adm_nom" => $nom,
                                                 "adm_email"=>$email,
                                                 "adm_pass"=>$pass,
+												"adm_rol" =>2,
+												"adm_est" => 2,
+                                                //"adm_foto"=>$foto,
                                                 "adm_fa"=> date("Y").date("m").date("d")]);
 
    if($insertar){

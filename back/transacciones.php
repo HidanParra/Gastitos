@@ -11,6 +11,7 @@
     exit();
   }else{
   $u_id=$_COOKIE['lau'];
+  $id=$_SESSION['USR_ID'];
   }
 ?>
 <!DOCTYPE html>
@@ -80,8 +81,8 @@
         <div class="sidebar-header d-flex align-items-center">
           <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
           <div class="title">
-            <h1 class="h5">Mark Stephen</h1>
-            <p>Web Designer</p>
+            <h1 class="h5"><?php global $db; $nom=$db->get("administradores","adm_nom",["adm_id"=>$id]); echo $nom;?></h1>
+
           </div>
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Modulos</span>
@@ -90,7 +91,9 @@
           <li class="active"><a href="transacciones.php"> <i class="icon-computer"></i>Transacciones </a></li>
           <li><a href="usuarios.php"> <i class="icon-user-1"></i>Usuarios </a></li>
           <li><a href="categorias.php"> <i class="icon-presentation"></i>Categorias </a></li>
-          <li><a href="login.php"> <i class="icon-logout"></i>Cerrar Sesión </a></li>
+          <li><a href="proyectos.php"> <i class="icon-layers"></i>Proyectos </a></li>
+          <li><a href="clientes.php"> <i class="icon-user"></i>Clientes </a></li>
+          <li><a href="tareas.php"> <i class="icon-contract"></i>Tareas </a></li>
       </nav>
       <!-- Sidebar Navigation end-->
       <div class="page-content">
@@ -149,7 +152,7 @@
                           <td><?php echo $tra["cat_nom"];?></td>
                           <td><?php echo $tra["tip_nom"];?></td>
                           <td><?php echo $tra["tra_cant"];?></td>
-                      
+
                           <td>
                             <a href="#" class="editar_trans" data-id="<?php echo $tra["tra_id"];?>">
                               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -213,20 +216,6 @@
               <input type="text" id="cant" autocomplete="off" placeholder="Cantidad" class="form-control">
             </div>
             <div class="form-group">
-              <label>Tipo de Transaccion</label>
-              <select id="lista" class="form-control">
-                <option value="0">Seleccionar Tipo</option>
-                    <?php
-                            $tipo = $db->select("tipo","*");
-                            foreach ($tipo as $key => $tip) {
-                        ?>
-                                <option value="<?php echo $tip["tip_id"]?>"><?php echo $tip["tip_nom"]?></option>
-                        <?php
-                            }
-                        ?>
-              </select>
-            </div>
-            <div class="form-group">
               <label>Categoria de Transaccion</label>
               <select id="listaa" class="form-control">
                 <option value="0">Seleccionar Categoria</option>
@@ -234,9 +223,25 @@
                             $cats = $db->select("categorias","*");
                             foreach ($cats as $key => $cat) {
                         ?>
-                                <option value="<?php echo $cat["cat_id"]?>"><?php echo $cat["cat_nom"]?></option>
+                                <option data-categoria="<?php echo $cat["cat_tip"]?>"value="<?php echo $cat["cat_id"]?>"><?php echo $cat["cat_nom"]?></option>
                         <?php
                             }
+                        ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tipo de Transaccion</label>
+              <select id="lista" class="form-control" disabled>
+                <option value="0">Seleccionar Tipo</option>
+                    <?php
+                            $tipo = $db->select("tipo","*");
+                            $temp;
+                            foreach ($tipo as $key => $tip) {
+                        ?>
+                                <option  value="<?php echo $tip["tip_id"]?>"><?php echo $tip["tip_nom"]?></option>
+
+                        <?php
+                        }
                         ?>
               </select>
             </div>

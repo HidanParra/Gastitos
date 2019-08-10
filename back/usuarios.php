@@ -11,6 +11,7 @@
     exit();
   }else{
   $u_id=$_COOKIE['lau'];
+  $id=$_SESSION['USR_ID'];
   }
 
 ?>
@@ -82,8 +83,8 @@
           <div class="sidebar-header d-flex align-items-center">
             <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
-              <h1 class="h5">Mark Stephen</h1>
-              <p>Web Designer</p>
+              <h1 class="h5"><?php global $db; $nom=$db->get("administradores","adm_nom",["adm_id"=>$id]); echo $nom;?></h1>
+
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">Modulos</span>
@@ -227,6 +228,11 @@
           <div class="form-group">
             <label>Password</label>
             <input type="password" id="pass" autocomplete="off" placeholder="Password" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="foto">Foto</label>
+            <input type="file" name="archivo" id="archivo"class="form-control">
+            <input type="hidden" readonly="readonly" class="form-control" name="foto" id="foto">
           </div>
         </form>
       </div>

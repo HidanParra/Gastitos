@@ -1,5 +1,29 @@
 $(document).ready(function(){
-//CERRAR SESION
+//CARGAR FOTOS
+$("#archivo").change(function(){
+  let formDatos=new FormData($("#formulario")[0]);
+  formDatos.append("accion", "carga_foto");
+  $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "POST",
+      data: formDatos,
+      contentType:false,
+      processData:false,
+      success: function(datos){
+          let respuesta = JSON.parse(datos);
+          if(respuesta.status==0){
+              alert("No se guardo la foto");
+          }
+          let imagen=`
+              <img src="${respuesta.archivo}" alt="img-fluid"/>
+              `;
+          $("#foto").val(respuesta.archivo);
+          $("#respuesta").html(imagen);
+      }
+  });
+  console.log(formDatos);
+});
+//CERRAR SESION   
 $("#logout").click(function(){
     let obj={
         "accion":"cerrar_sesion"
@@ -201,11 +225,13 @@ $("#guardarUsr").click(function(){
   nom=$("#nom").val();
   email=$("#email").val();
   pass=$("#pass").val();
+  foto=$("#foto").val();
   obj={
     accion: "insertar_user",
     nom: nom,
     email: email,
-    pass:pass
+    pass:pass,
+    foto:foto
   }
 
   if($(this).data("edicion")==1){
@@ -224,7 +250,7 @@ $("#guardarUsr").click(function(){
       datatype: "json",
       data: obj,
       success: function(data){
-        if(data==1){swal("insercion");}
+        if(data==1){swal("Hecho");}
       }
     })
     location.reload();
@@ -301,7 +327,7 @@ $("#guardarTra").click(function(){
       datatype: "json",
       data: obj,
       success: function(data){
-        if(data==1){swal("subete y ya veras");}
+        if(data==1){swal("Hecho");}
       }
     })
     location.reload();
@@ -319,8 +345,8 @@ $(document).on("click", ".editar_trans", function(){
   $.post("backend/includes/_funciones.php", obj, function(data){
     $("#nom").val(data.tra_nom);
     $("#cant").val(data.tra_cant);
-    $("#lista").val(data.tra_cat);
-    $("#listaa").val(data.tra_tip);
+    $("#lista").val(data.tra_tip);
+    $("#listaa").val(data.tra_cat);
   }, "JSON");
 
   $("#guardarTra").text("Actualizar").data("edicion", 1).data("id", id);
@@ -329,6 +355,11 @@ $(document).on("click", ".editar_trans", function(){
 
 });
 
+$("#listaa").change(function(){
+  let categoria=$(this).find("option:selected").data("categoria");
+  console.log(categoria);
+  $("#lista").val(categoria);
+});
 
 $(document).on("click", ".eliminar_trans", function(){
   id=$(this).data("id");
@@ -377,7 +408,7 @@ $("#guardarCat").click(function(){
       datatype: "json",
       data: obj,
       success: function(data){
-        if(data==1){swal("categoria ");}
+        if(data==1){swal("Hecho ");}
       }
     })
     location.reload();
@@ -449,17 +480,17 @@ $("#contact").click(function(e){
       data: obj,
       success: function(data){
           if(data==1){
-			swal("Se ha enviado tu solicitud");  
+			swal("Se ha enviado tu solicitud");
             //alert("Se ha enviado tu solicitud");
 			location.reload();
           }
-          if(data==2){
+      if(data==2){
             swal("Ooops! Algo salio mal :( ");
             //console.log(obj);
           }
       }
     })
-   
+
   }
 
 });

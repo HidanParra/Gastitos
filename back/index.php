@@ -11,6 +11,7 @@
     exit();
   }else{
   $u_id=$_COOKIE['lau'];
+  $id=$_SESSION['USR_ID'];
   }
 ?>
 <!DOCTYPE html>
@@ -80,8 +81,8 @@
         <div class="sidebar-header d-flex align-items-center">
           <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
           <div class="title">
-            <h1 class="h5">Mark Stephen</h1>
-            <p>Web Designer</p>
+            <h1 class="h5"><?php global $db; $nom=$db->get("administradores","adm_nom",["adm_id"=>$id]); echo $nom;?></h1>
+
           </div>
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Modulos</span>
@@ -96,7 +97,11 @@
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Dashboard</h2>
+            <?php
+              $m = date("F");
+              $y = date("Y");
+            ?>
+            <h2 class="h5 no-margin-bottom">Dashboard &nbsp; &nbsp; &nbsp; <?php echo "$m  $y";?></h2>
           </div>
         </div>
         <section class="no-padding-top">
@@ -110,7 +115,10 @@
                         <thead>
                           <tr>
                             <th>Salarios</th>
-                            <th>Suma</th>
+                            <?php
+                                $sa = $db ->sum("transacciones", ["transacciones.tra_cant"], ["transacciones.tra_cat" => 1]);
+                             ?>
+                            <th><?php echo $sa;?></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -133,8 +141,11 @@
                       <table class="table">
                         <thead>
                           <tr>
+                            <?php
+                                $fe = $db ->sum("transacciones", ["transacciones.tra_cant"], ["transacciones.tra_cat" => 2]);
+                             ?>
                             <th>Freelance</th>
-                            <th>suma</th>
+                            <th><?php echo $fe;?></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -163,8 +174,11 @@
                         <table class="table">
                           <thead>
                             <tr>
+                              <?php
+                                  $co = $db ->sum("transacciones", ["transacciones.tra_cant"], ["transacciones.tra_cat" => 3]);
+                               ?>
                               <th>Comidas</th>
-                              <th>Suma</th>
+                              <th><?php echo $co;?></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -187,8 +201,11 @@
                         <table class="table">
                           <thead>
                             <tr>
+                              <?php
+                                  $fi = $db ->sum("transacciones", ["transacciones.tra_cant"], ["transacciones.tra_cat" => 4]);
+                               ?>
                               <th>Fijos</th>
-                              <th>suma</th>
+                              <th><?php echo $fi;?></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -212,33 +229,58 @@
                   </div>
                   <div class="col-lg-4">
                     <div class="block margin-bottom-sm">
-                      <div class="title"><strong>Balance</strong></div>
+                      <?php
+                          $in = $db ->sum("transacciones", ["transacciones.tra_cant"], ["transacciones.tra_tip" => 1]);
+                          $ga = $db ->sum("transacciones", ["transacciones.tra_cant"], ["transacciones.tra_tip" => 2]);
+
+                          $bal = $in-$ga;
+
+                       ?>
+                      <div class="title"><strong>Balance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong>
+                        <?php
+                          if($bal >= 0){
+                        ?>
+                          <button type="button" class="btn btn-success"><?php echo $bal;?></button>
+                          <span class="label label-success"></span>
+                        <?php
+                      }else{
+                        ?>
+                          <button type="button" class="btn btn-danger"><?php echo $bal;?></button>
+                          <span class="label label-danger"></span>
+                        <?php
+                        }
+                        ?>
+                      </div>
                         <div class="table-responsive">
                           <table class="table">
                             <thead>
                               <tr>
-                                <th>Salarios</th>
-                                <th>Suma</th>
+
+                                <th>Ingresos</th>
+                                <th><?php echo $in;?></th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <td scope="row">1</td>
-                                <td>Mark</td>
+                                <td scope="row"></td>
+                                <td></td>
                               </tr>
                             </tbody>
                           </table>
                           <table class="table">
                             <thead>
                               <tr>
-                                <th>Ingresos</th>
-                                <th>suma</th>
+                                <?php
+
+                                 ?>
+                                <th>Gastos</th>
+                                <th><?php echo $ga;?></th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <td scope="row">1</td>
-                                <td>Mark</td>
+                                <td scope="row"></td>
+                                <td></td>
                               </tr>
                             </tbody>
                           </table>
