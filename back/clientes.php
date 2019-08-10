@@ -23,7 +23,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -195,7 +196,8 @@
       <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
       <script src="js/front.js"></script>
       <script src="js/main.js"></script>
-	  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     </body>
 </html>
 <!-- Modal-->
@@ -209,8 +211,16 @@
         <p></p>
         <form id="formulario">
           <div class="form-group">
-            <label>Nombre de la Categoria</label>
+            <label>Nombre del Cliente</label>
             <input type="text" id="nom" placeholder="Nombre" autocomplete="off" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Sitio Web</label>
+            <input type="text" id="sw" placeholder="Sitio Web" autocomplete="off" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Telefono</label>
+            <input type="text" id="tel" placeholder="Telefono" autocomplete="off" class="form-control">
           </div>
           <div class="form-group">
             <label>Tipo de Categoria</label>
