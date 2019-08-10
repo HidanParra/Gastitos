@@ -91,7 +91,9 @@
           <li><a href="transacciones.php"> <i class="icon-computer"></i>Transacciones </a></li>
           <li><a href="usuarios.php"> <i class="icon-user-1"></i>Usuarios</a></li>
           <li><a href="categorias.php"> <i class="icon-presentation"></i>Categorias </a></li>
-          <li><a href="login.php"> <i class="icon-logout"></i>Cerrar Sesión </a></li>
+          <li><a href="proyectos.php"> <i class="icon-layers"></i>Proyectos </a></li>
+          <li><a href="clientes.php"> <i class="icon-user"></i>Clientes </a></li>
+          <li><a href="tareas.php"> <i class="icon-contract"></i>Tareas </a></li>
       </nav>
       <!-- Sidebar Navigation end-->
       <div class="page-content">
