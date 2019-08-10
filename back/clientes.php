@@ -126,7 +126,9 @@
                           <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Tipo</th>
+                            <th>Sitio Web</th>
+                            <th>Telefono</th>
+                            <th>Direccion</th>
                             <th>Fecha de Alta</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
@@ -134,25 +136,31 @@
                         </thead>
                         <tbody>
                           <?php
-                            $cats = $db->select("categorias",["[><]tipo" => ["cat_tip" => "tip_id"]],
-                                                                            ["categorias.cat_id",
-                                                                            "categorias.cat_nom",
-                                                                            "tipo.tip_nom",
-                                                                            "categorias.cat_fa"]);
-                              foreach($cats as $key => $cat){
+                            $i=1;
+                            $clis = $db->select("clientes",["clientes.cli_id",
+                                                            "clientes.cli_nom",
+                                                            "clientes.cli_sw",
+                                                            "clientes.cli_tel",
+                                                            "clientes.cli_pa",
+                                                            "clientes.cli_reg",
+                                                            "clientes.cli_fa"]);
+
+                              foreach($clis as $key => $cli){
                           ?>
                           <tr>
-                            <th scope="row"><?php echo $cat["cat_id"];?></th>
-                            <td><?php echo $cat["cat_nom"];?></td>
-                            <td><?php echo $cat["tip_nom"];?></td>
-                            <td><?php echo $cat["cat_fa"];?></td>
+                            <th scope="row"><?php echo $i++;?></th>
+                            <td><?php echo $cli["cli_nom"];?></td>
+                            <td><?php echo $cli["cli_sw"];?></td>
+                            <td><?php echo $cli["cli_tel"];?></td>
+                            <td><?php echo $cli["cli_reg"], ', ',$cli["cli_pa"];?></td>
+                            <td><?php echo $cli["cli_fa"];?></td>
                             <td>
-                              <a href="#" class="editar_cat" data-id="<?php echo $cat["cat_id"];?>">
+                              <a href="#" class="editar_cat" data-id="<?php echo $cli["cli_id"];?>">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                             </td>
                             <td>
-                              <a href="#" class="eliminar_cat" data-id="<?php echo $cat["cat_id"];?>">
+                              <a href="#" class="eliminar_cat" data-id="<?php echo $cli["cli_id"];?>">
                               <i class="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                             </td>
