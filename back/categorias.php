@@ -134,6 +134,7 @@
                         </thead>
                         <tbody>
                           <?php
+                            $i=1;
                             $cats = $db->select("categorias",["[><]tipo" => ["cat_tip" => "tip_id"]],
                                                                             ["categorias.cat_id",
                                                                             "categorias.cat_nom",
@@ -142,7 +143,7 @@
                               foreach($cats as $key => $cat){
                           ?>
                           <tr>
-                            <th scope="row"><?php echo $cat["cat_id"];?></th>
+                            <th scope="row"><?php echo $i++;?></th>
                             <td><?php echo $cat["cat_nom"];?></td>
                             <td><?php echo $cat["tip_nom"];?></td>
                             <td><?php echo $cat["cat_fa"];?></td>
