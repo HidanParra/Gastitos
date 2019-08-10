@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Gastitos | Categorias</title>
+    <title>Gastitos | Tareas</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -101,14 +101,14 @@
           <!-- Page Header-->
           <div class="page-header no-margin-bottom">
             <div class="container-fluid">
-              <h2 class="h5 no-margin-bottom">Categorias</h2>
+              <h2 class="h5 no-margin-bottom">Tareas</h2>
             </div>
           </div>
           <!-- Breadcrumb-->
           <div class="container-fluid">
             <ul class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Categorias        </li>
+              <li class="breadcrumb-item active">Tareas        </li>
             </ul>
           </div>
           <section class="no-padding-top">
@@ -117,7 +117,7 @@
                 <div class="col-lg-12">
                   <div class="block">
                     <div class="title">
-                      <strong>Categorias &nbsp; &nbsp;</strong>
+                      <strong>Tareas &nbsp; &nbsp;</strong>
                       <button id="nuevo" type="button" class="btn btn-primary">Nuevo</button>
                     </div>
                     <div class="table-responsive">
