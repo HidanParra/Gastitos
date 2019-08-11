@@ -125,8 +125,10 @@
                         <thead>
                           <tr>
                             <th>#</th>
+                            <th>Cliente</th>
                             <th>Nombre</th>
-                            <th>Tipo</th>
+                            <th>Fecha de Pago</th>
+                            <th>Budgeted Hours</th>
                             <th>Fecha de Alta</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
@@ -134,25 +136,29 @@
                         </thead>
                         <tbody>
                           <?php
-                            $cats = $db->select("categorias",["[><]tipo" => ["cat_tip" => "tip_id"]],
-                                                                            ["categorias.cat_id",
-                                                                            "categorias.cat_nom",
-                                                                            "tipo.tip_nom",
-                                                                            "categorias.cat_fa"]);
-                              foreach($cats as $key => $cat){
+                            $i=1;
+                            $proy = $db->select("proyectos",["proyectos.proy_id",
+                                                             "proyectos.proy_cli",
+                                                             "proyectos.proy_nom",
+                                                             "proyectos.proy_fp",
+                                                             "proyectos.proy_bh",
+                                                             "proyectos.proy_fa"]);
+                              foreach($proy as $key => $pro){
                           ?>
                           <tr>
-                            <th scope="row"><?php echo $cat["cat_id"];?></th>
-                            <td><?php echo $cat["cat_nom"];?></td>
-                            <td><?php echo $cat["tip_nom"];?></td>
-                            <td><?php echo $cat["cat_fa"];?></td>
+                            <th scope="row"><?php echo $i++;?></th>
+                            <td><?php echo $pro["proy_cli"];?></td>
+                            <td><?php echo $pro["proy_nom"];?></td>
+                            <td><?php echo $pro["proy_fp"];?></td>
+                            <td><?php echo $pro["proy_bh"];?></td>
+                            <td><?php echo $pro["proy_fa"];?></td>
                             <td>
-                              <a href="#" class="editar_cat" data-id="<?php echo $cat["cat_id"];?>">
+                              <a href="#" class="editar_cat" data-id="<?php echo $pro["proy_id"];?>">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                             </td>
                             <td>
-                              <a href="#" class="eliminar_cat" data-id="<?php echo $cat["cat_id"];?>">
+                              <a href="#" class="eliminar_cat" data-id="<?php echo $pro["proy_id"];?>">
                               <i class="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                             </td>
@@ -194,35 +200,43 @@
 <div id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
   <div role="document" class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar Categoria</strong>
+      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar Proyecto</strong>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">
         <p></p>
         <form id="formulario">
           <div class="form-group">
-            <label>Nombre de la Categoria</label>
-            <input type="text" id="nom" placeholder="Nombre" autocomplete="off" class="form-control">
+            <label>Nombre del Proyecto</label>
+            <input type="text" id="nom" placeholder="Proyecto" autocomplete="off" class="form-control">
           </div>
           <div class="form-group">
-            <label>Tipo de Categoria</label>
+            <label>Cliente</label>
             <select id="lista" class="form-control">
-              <option value="0">Seleccionar Tipo</option>
+              <option value="0">Seleccionar Cliente</option>
                   <?php
-                          $tipo = $db->select("tipo","*");
+                          $tipo = $db->select("clientes","*");
                           foreach ($tipo as $key => $tip) {
                       ?>
-                              <option value="<?php echo $tip["tip_id"]?>"><?php echo $tip["tip_nom"]?></option>
+                              <option value="<?php echo $tip["cli_id"]?>"><?php echo $tip["cli_nom"]?></option>
                       <?php
                           }
                       ?>
             </select>
           </div>
+          <div class="form-group">
+            <label>Fecha de Pago</label>
+            <input type="date" id="fp" placeholder="Fecha de Pago" autocomplete="off" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Budgeted Hours</label>
+            <input type="text" id="bh" placeholder="Budgeted Hours" autocomplete="off" class="form-control">
+          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
-        <button type="button" id="guardarCat" class="btn btn-primary">Guardar</button>
+        <button type="button" id="guardarPro" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>
