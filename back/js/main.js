@@ -538,6 +538,94 @@ $(document).on("click", ".eliminar_cli", function(){
   location.reload();
 });
 
+$("#guardarPro").click(function(e){
+  e.preventDefault();
+  nom=$("#nom").val();
+  lista=$("#lista").val();
+  fp=$("#fp").val();
+  bh=$("#bh").val();
+  obj={
+    accion: "insertar_proy",
+    nom: nom,
+    lista: lista,
+    fp: fp,
+    bh: bh
+  }
+
+  if($(this).data("edicion")==1){
+  obj["accion"]="editar_proy";
+  obj["id"]=$(this).data("id");
+  $(this).removeData("edicion").removeData("id");
+  }
+
+  if(nom=="" || lista==0 || bh==""){
+    swal("No dejes campos vacios");
+    return;
+  }else{
+    $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "POST",
+      dataType: "json",
+      data: obj,
+      success: function(data){
+        if(data==1){
+          swal("Hecho");
+        }else{
+          swal("Algo salio mal");
+        }
+      }
+    })
+    location.reload();
+  }
+
+});
+
+$(document).on("click", ".editar_proy", function(){
+  id=$(this).data("id");
+  obj={
+    "accion" : "consultar_proy",
+    "id" : $(this).data("id")
+  }
+  console.log(id);
+  $.post("backend/includes/_funciones.php", obj, function(data){
+    $("#nom").val(data.proy_nom);
+    $("#lista").val(data.proy_cli);
+    $("#fp").val(data.proy_fp);
+    $("#bh").val(data.proy_bh);
+  }, "JSON");
+
+  $("#guardarPro").text("Actualizar").data("edicion", 1).data("id", id);
+  $(".modal-title").text("Editar Proyecto");
+  $("#modal").modal("show");
+
+});
+
+$(document).on("click", ".eliminar_proy", function(){
+  id=$(this).data("id");
+  let obj = {
+        "accion" : "eliminar_proy",
+        "id" : id
+    }
+
+  $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "POST",
+      dataType: "json",
+      data: obj,
+      success: function(data){
+          if(data==1){swal("logrado");}else{swal("no logrado");}
+      }
+  })
+  location.reload();
+});
+
+
+
+
+
+
+
+
 //CONTACTO
 $("#contact").click(function(e){
   e.preventDefault();

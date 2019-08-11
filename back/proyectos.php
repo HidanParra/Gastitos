@@ -153,12 +153,12 @@
                             <td><?php echo $pro["proy_bh"];?></td>
                             <td><?php echo $pro["proy_fa"];?></td>
                             <td>
-                              <a href="#" class="editar_cat" data-id="<?php echo $pro["proy_id"];?>">
+                              <a href="#" class="editar_proy" data-id="<?php echo $pro["proy_id"];?>">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                             </td>
                             <td>
-                              <a href="#" class="eliminar_cat" data-id="<?php echo $pro["proy_id"];?>">
+                              <a href="#" class="eliminar_proy" data-id="<?php echo $pro["proy_id"];?>">
                               <i class="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                             </td>
@@ -218,7 +218,7 @@
                           $tipo = $db->select("clientes","*");
                           foreach ($tipo as $key => $tip) {
                       ?>
-                              <option value="<?php echo $tip["cli_id"]?>"><?php echo $tip["cli_nom"]?></option>
+                              <option value="<?php echo $tip["cli_nom"]?>"><?php echo $tip["cli_nom"]?></option>
                       <?php
                           }
                       ?>

@@ -92,6 +92,19 @@
     case "consultar_cliente":
       consultar_cliente();
     break;
+    //proyectos
+    case "insertar_proy":
+      insertar_proy();
+    break;
+    case "eliminar_proy":
+      eliminar_proy();
+    break;
+    case "editar_proy":
+      editar_proy();
+    break;
+    case "consultar_proy":
+      consultar_proy();
+    break;
   }
 }
   //LOGIN
@@ -456,6 +469,58 @@ function eliminar_cat(){
     global $db;
 
     $eliminar = $db->delete("clientes",["cli_id" => $id]);
+    if($eliminar){
+        echo 1;
+    }else{
+        echo 2;
+    }
+  }
+
+  function insertar_proy(){
+    extract($_POST);
+    global $db;
+
+    $insertar= $db -> insert("proyectos",["proy_nom" => $nom,
+                                          "proy_cli" => $lista,
+                                          "proy_bh" => $bh,
+                                          "proy_fp" => $fp,
+                                          "proy_fa" => date("Y").date("m").date("d") ]);
+
+    if($insertar){
+      echo 1;
+    }else {
+      echo 2;
+    }
+  }
+
+  function editar_proy(){
+    extract($_POST);
+    global $db;
+
+    $editar= $db -> update("proyectos",["proy_nom" => $nom,
+                                        "proy_cli" => $lista,
+                                        "proy_bh" => $bh,
+                                        "proy_fp" => $fp],
+                                       ["proy_id" => $id]);
+    if($editar){
+      echo 1;
+    }else{
+      echo 2;
+    }
+  }
+
+  function consultar_proy(){
+    extract($_POST);
+    global $db;
+
+    $consultar = $db -> get("proyectos","*",["AND" => ["proy_id"=>$id]]);
+    echo json_encode($consultar);
+
+  }
+
+  function eliminar_proy(){
+
+    $eliminar = $db->delete("proyectos",["proy_id" => $id]);
     if($eliminar){
         echo 1;
     }else{
