@@ -79,6 +79,19 @@
     case "carga_foto":
       carga_foto();
     break;
+    //Clientes
+    case "insertar_cliente":
+      insertar_cliente();
+    break;
+    case "editar_cliente":
+      editar_cliente();
+    break;
+    case "eliminar_cliente":
+      eliminar_cliente();
+    break;
+    case "consultar_cliente":
+      consultar_cliente();
+    break;
   }
 }
   //LOGIN
@@ -393,4 +406,60 @@ function eliminar_cat(){
 
   }
 
+  //clientes
+  function insertar_cliente(){
+    extract($_POST);
+    global $db;
+
+    $insertar = $db -> insert("clientes",["cli_nom" => $nom,
+                                          "cli_sw" => $sw,
+                                          "cli_tel" => $tel,
+                                          "cli_pa" => $pais,
+                                          "cli_reg" => $edo,
+                                          "cli_fa" => date("Y").date("m").date("d")]);
+
+    if($insertar){
+      echo 1;
+    }else{
+      echo 2;
+    }
+  }
+
+  function editar_cliente(){
+    extract($_POST);
+    global $db;
+
+    $editar = $db -> update("clientes",["cli_nom" => $nom,
+                                        "cli_sw" => $sw,
+                                        "cli_tel" => $tel,
+                                        "cli_pa" => $pais,
+                                        "cli_reg" => $edo],
+                                      ["cli_id" => $id]);
+
+    if($editar){
+      echo 1;
+    }else{
+      echo 2;
+    }
+  }
+
+  function consultar_cliente(){
+    extract($_POST);
+    global $db;
+
+    $consultar = $db -> get("clientes","*",["AND" => ["cli_id"=>$id]]);
+    echo json_encode($consultar);
+  }
+
+  function eliminar_cliente(){
+    extract($_POST);
+    global $db;
+
+    $eliminar = $db->delete("clientes",["cli_id" => $id]);
+    if($eliminar){
+        echo 1;
+    }else{
+        echo 2;
+    }
+  }
 ?>

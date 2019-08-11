@@ -23,7 +23,7 @@ $("#archivo").change(function(){
   });
   console.log(formDatos);
 });
-//CERRAR SESION   
+//CERRAR SESION
 $("#logout").click(function(){
     let obj={
         "accion":"cerrar_sesion"
@@ -438,6 +438,91 @@ $(document).on("click", ".eliminar_cat", function(){
   id=$(this).data("id");
   let obj = {
         "accion" : "eliminar_cat",
+        "id" : id
+    }
+
+  $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "POST",
+      dataType: "json",
+      data: obj,
+      success: function(data){
+          if(data==1){swal("logrado");}else{swal("no logrado");}
+      }
+  })
+  location.reload();
+});
+
+//Clientes
+$("#guardarCli").click(function(e){
+  e.preventDefault();
+  nom=$("#nom").val();
+  sw=$("#sw").val();
+  tel=$("#tel").val();
+  pais=$("#pais").val();
+  edo=$("#edo").val();
+  obj={
+    accion: "insertar_cliente",
+    nom: nom,
+    sw: sw,
+    tel: tel,
+    pais: pais,
+    edo: edo,
+  }
+
+    if($(this).data("edicion")==1){
+    obj["accion"]="editar_cliente";
+    obj["id"]=$(this).data("id");
+    $(this).removeData("edicion").removeData("id");
+    }
+
+  if(nom=="" || sw=="" || tel=="" || pais=="" || edo==""){
+    swal("No dejes campos vacios");
+    return;
+  }else{
+    //console.log(obj);
+    $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "POST",
+      dataType: "json",
+      data: obj,
+      success: function(data){
+        if(data==1){
+          swal("Hecho");
+        }else{
+          swal("Algo salio mal");
+        }
+      }
+    })
+    location.reload();
+  }
+});
+
+$(document).on("click", ".editar_cli", function(){
+  id=$(this).data("id");
+  obj={
+    "accion" : "consultar_cliente",
+    "id" : $(this).data("id")
+  }
+  console.log(id);
+  $.post("backend/includes/_funciones.php", obj, function(data){
+    $("#nom").val(data.cli_nom);
+    $("#sw").val(data.cli_sw);
+    $("#tel").val(data.cli_tel);
+    $("#pais").val(data.cli_pa);
+    $("#edo").val(data.cli_reg);
+  }, "JSON");
+
+  $("#guardarCli").text("Actualizar").data("edicion", 1).data("id", id);
+  $(".modal-title").text("Editar Cliente");
+  $("#modal").modal("show");
+
+});
+
+$(document).on("click", ".eliminar_cli", function(){
+  id=$(this).data("id");
+  let obj = {
+        "accion" : "eliminar_cliente",
         "id" : id
     }
 

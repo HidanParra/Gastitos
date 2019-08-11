@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
 	  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+  
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -156,12 +156,12 @@
                             <td><?php echo $cli["cli_reg"], ', ',$cli["cli_pa"];?></td>
                             <td><?php echo $cli["cli_fa"];?></td>
                             <td>
-                              <a href="#" class="editar_cat" data-id="<?php echo $cli["cli_id"];?>">
+                              <a href="#" class="editar_cli" data-id="<?php echo $cli["cli_id"];?>">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                             </td>
                             <td>
-                              <a href="#" class="eliminar_cat" data-id="<?php echo $cli["cli_id"];?>">
+                              <a href="#" class="eliminar_cli" data-id="<?php echo $cli["cli_id"];?>">
                               <i class="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                             </td>
@@ -197,14 +197,14 @@
       <script src="js/front.js"></script>
       <script src="js/main.js"></script>
 	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-      <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+
     </body>
 </html>
 <!-- Modal-->
 <div id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
   <div role="document" class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar Categoria</strong>
+      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar Cliente</strong>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">
@@ -223,24 +223,18 @@
             <input type="text" id="tel" placeholder="Telefono" autocomplete="off" class="form-control">
           </div>
           <div class="form-group">
-            <label>Tipo de Categoria</label>
-            <select id="lista" class="form-control">
-              <option value="0">Seleccionar Tipo</option>
-                  <?php
-                          $tipo = $db->select("tipo","*");
-                          foreach ($tipo as $key => $tip) {
-                      ?>
-                              <option value="<?php echo $tip["tip_id"]?>"><?php echo $tip["tip_nom"]?></option>
-                      <?php
-                          }
-                      ?>
-            </select>
+            <label>Pais</label>
+            <input type="text" id="pais" placeholder="Pais" autocomplete="off" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Estado</label>
+            <input type="text" id="edo" placeholder="Estado" autocomplete="off" class="form-control">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
-        <button type="button" id="guardarCat" class="btn btn-primary">Guardar</button>
+        <button type="button" id="guardarCli" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>
