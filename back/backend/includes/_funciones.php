@@ -105,6 +105,20 @@
     case "consultar_proy":
       consultar_proy();
     break;
+    //TAREAS
+    case "insertar_tarea":
+      insertar_tarea();
+    break;
+    case "eliminar_tarea":
+      eliminar_tarea();
+    break;
+    case "editar_tarea":
+      editar_tarea();
+    break;
+    case "consultar_tarea":
+      consultar_tarea();
+    break;
+
   }
 }
   //LOGIN
@@ -519,6 +533,8 @@ function eliminar_cat(){
   }
 
   function eliminar_proy(){
+    extract($_POST);
+    global $db;
 
     $eliminar = $db->delete("proyectos",["proy_id" => $id]);
     if($eliminar){
@@ -526,5 +542,27 @@ function eliminar_cat(){
     }else{
         echo 2;
     }
+  }
+
+  //tareas
+
+  function insertar_tarea(){
+    extract($_POST);
+    global $db;
+  }
+
+  function editar_tarea(){
+    extract($_POST);
+    global $db;
+  }
+
+  function consultar_tarea(){
+    extract($_POST);
+    global $db;
+  }
+
+  function eliminar_tarea(){
+    extract($_POST);
+    global $db;
   }
 ?>
