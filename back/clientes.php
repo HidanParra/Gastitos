@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
 	  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
+
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -81,7 +81,12 @@
         <nav id="sidebar">
           <!-- Sidebar Header-->
           <div class="sidebar-header d-flex align-items-center">
-            <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="avatar"><img src="<?php
+              $admin = $db->select("administradores","*",["adm_id"=>$id]);
+               foreach($admin as $key => $adm){
+                 echo $adm["adm_foto"];
+               }
+              ?>" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
               <h1 class="h5"><?php global $db; $nom=$db->get("administradores","adm_nom",["adm_id"=>$id]); echo $nom;?></h1>
 

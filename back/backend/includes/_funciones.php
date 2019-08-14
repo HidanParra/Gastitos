@@ -370,9 +370,9 @@ function eliminar_cat(){
     $insertar =$db ->insert("administradores", ["adm_nom" => $nom,
                                                 "adm_email"=>$email,
                                                 "adm_pass"=>$pass,
-												"adm_rol" =>2,
-												"adm_est" => 2,
-                                                //"adm_foto"=>$foto,
+												                        "adm_rol" =>2,
+												                        "adm_est" => 2,
+                                                "adm_foto"=>$foto,
                                                 "adm_fa"=> date("Y").date("m").date("d")]);
 
    if($insertar){
@@ -389,7 +389,8 @@ function eliminar_cat(){
 
       $editar=$db ->update("administradores",["adm_nom" => $nom,
                                               "adm_email" => $email,
-                                              "adm_pass" => $pass,],
+                                              "adm_pass" => $pass,
+                                              "usr_foto"=>$foto,],
                                               ["adm_id"=>$id]);
   }
 

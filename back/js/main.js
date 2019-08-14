@@ -267,6 +267,7 @@ $(document).on("click", ".editar_user", function(){
     $("#nom").val(data.adm_nom);
     $("#email").val(data.adm_email);
     $("#pass").val(data.adm_pass);
+    $("#archivo").val(data.usr_foto);
   }, "JSON");
 
   $("#guardarUsr").text("Actualizar").data("edicion", 1).data("id", id);

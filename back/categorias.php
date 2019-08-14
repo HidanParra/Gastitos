@@ -77,10 +77,15 @@
       </header>
       <div class="d-flex align-items-stretch">
         <!-- Sidebar Navigation-->
-        <nav id="sidebar">
+        <nav id="sidebar"> 
           <!-- Sidebar Header-->
           <div class="sidebar-header d-flex align-items-center">
-            <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="avatar"><img src="<?php
+              $admin = $db->select("administradores","*",["adm_id"=>$id]);
+               foreach($admin as $key => $adm){
+                 echo $adm["adm_foto"];
+               }
+              ?>" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
               <h1 class="h5"><?php global $db; $nom=$db->get("administradores","adm_nom",["adm_id"=>$id]); echo $nom;?></h1>
 
