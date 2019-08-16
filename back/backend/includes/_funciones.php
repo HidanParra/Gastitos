@@ -550,6 +550,16 @@ function eliminar_cat(){
   function insertar_tarea(){
     extract($_POST);
     global $db;
+
+    $insertar=$db->insert("tareas",["tar_cli" => $cliente,
+                                    "tar_proy" => $proyecto,
+                                    "tar_des" => $desc,
+                                    "tar_fa" => date("Y").date("m").date("d")]);
+    if($insertar){
+      echo 1;
+    }else{
+      echo 2;
+    }
   }
 
   function editar_tarea(){
