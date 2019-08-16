@@ -215,7 +215,7 @@
 <div id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
   <div role="document" class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar Tareas</strong>
+      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar Tarea</strong>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">

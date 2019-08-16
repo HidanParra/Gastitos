@@ -620,8 +620,47 @@ $(document).on("click", ".eliminar_proy", function(){
   location.reload();
 });
 
+//TAREAS
+$("#guardarTar").click(function(e){
+  e.preventDefault();
+  cliente=$("#cliente").val();
+  proyecto=$("#proyecto").val();
+  desc=$("#desc").val();
+  obj={
+    accion: "insertar_tarea",
+    cliente: cliente,
+    proyecto: proyecto,
+    desc: desc
+  }
 
+  if($(this).data("edicion")==1){
+  obj["accion"]="editar_tarea";
+  obj["id"]=$(this).data("id");
+  $(this).removeData("edicion").removeData("id");
+  }
 
+  if(cliente==0 || proyecto==0 || (desc==""){
+    swal("No dejes campos vacios");
+  }else if(desc.length>199){
+    swal("La descripción no debe ser mayor a 200 letras ");
+  }else{
+    $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "POST",
+      dataType: "json",
+      data: obj,
+      success: function(data){
+          if(data==1){
+			      swal("Hecho");
+          if(data==2){
+            swal("Ooops! Algo salio mal :( ");
+          }
+      }
+    })
+    //location.reload();
+  }
+
+});
 
 
 
