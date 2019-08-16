@@ -142,8 +142,9 @@
                         <tbody>
                           <?php
                             $i=1;
-                            $proy = $db->select("proyectos",["proyectos.proy_id",
-                                                             "proyectos.proy_cli",
+                            $proy = $db->select("proyectos",["[><]clientes" => ["proy_cli" => "cli_id"]],
+                                                            ["proyectos.proy_id",
+                                                             "clientes.cli_nom",
                                                              "proyectos.proy_nom",
                                                              "proyectos.proy_fp",
                                                              "proyectos.proy_bh",
@@ -152,7 +153,7 @@
                           ?>
                           <tr>
                             <th scope="row"><?php echo $i++;?></th>
-                            <td><?php echo $pro["proy_cli"];?></td>
+                            <td><?php echo $pro["cli_nom"];?></td>
                             <td><?php echo $pro["proy_nom"];?></td>
                             <td><?php echo $pro["proy_fp"];?></td>
                             <td><?php echo $pro["proy_bh"];?></td>
@@ -223,7 +224,7 @@
                           $tipo = $db->select("clientes","*");
                           foreach ($tipo as $key => $tip) {
                       ?>
-                              <option value="<?php echo $tip["cli_nom"]?>"><?php echo $tip["cli_nom"]?></option>
+                              <option value="<?php echo $tip["cli_id"]?>"><?php echo $tip["cli_nom"]?></option>
                       <?php
                           }
                       ?>
