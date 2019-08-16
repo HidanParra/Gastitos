@@ -661,25 +661,32 @@ $("#guardarTar").click(function(e){
   }
 });
 
-$(document).on("click", ".tiempo_tarea",function(){
-
+$(document).on("click", ".tiempo_inicio",function(){
   swal("Iniciado");
+  $(".tiempo_inicio").text("Iniciado");
   id=$(this).data("id");
   obj={
-    "accion" : "tiempo_tarea",
+    "accion" : "tiempo_inicio",
     "id" : $(this).data("id")
   }
-  console.log(obj);
 
-  $(".tiempo_tarea").toggleClass("btn-danger").text("Detener");
+  $(".tiempo_inicio").toggleClass("btn-danger tiempo_final").text("Detener");
 
-  //$(".tiempo_tarea").text("Detener");
-
-  //$(".tiempo_tarea").text("Iniciar");
-
-  //$(".tiempo_tarea").createElement("label").createTextNode("Puto");
-  //$(".tiempo_tarea");
 });
+
+$(document).on("click", ".tiempo_final",function(){
+  $(".tiempo_final").toggleClass("btn-danger tiempo_final").text("Detener");
+  swal("Detenido");
+  id=$(this).data("id");
+  obj={
+    "accion" : "tiempo_final",
+    "id" : $(this).data("id")
+  }
+
+
+  $("span[value='"+id+"']").replaceWith("<p>"+$(this).data("id")+"</p>");
+});
+
 
 $(document).on("click", ".editar_tarea", function(){
   id=$(this).data("id");
