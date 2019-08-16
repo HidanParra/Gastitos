@@ -662,6 +662,7 @@ $("#guardarTar").click(function(e){
 });
 
 $(document).on("click", ".tiempo_tarea",function(){
+
   swal("Iniciado");
   id=$(this).data("id");
   obj={
@@ -669,8 +670,15 @@ $(document).on("click", ".tiempo_tarea",function(){
     "id" : $(this).data("id")
   }
   console.log(obj);
-  $(".tiempo_tarea").text("Detener");
-  $(".tiempo_tarea").toggleClass("btn-danger")
+
+  $(".tiempo_tarea").toggleClass("btn-danger").text("Detener");
+
+  //$(".tiempo_tarea").text("Detener");
+
+  //$(".tiempo_tarea").text("Iniciar");
+
+  //$(".tiempo_tarea").createElement("label").createTextNode("Puto");
+  //$(".tiempo_tarea");
 });
 
 $(document).on("click", ".editar_tarea", function(){
