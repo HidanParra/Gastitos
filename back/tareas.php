@@ -215,35 +215,49 @@
 <div id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
   <div role="document" class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar </strong>
+      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar Tareas</strong>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">
         <p></p>
         <form id="formulario">
           <div class="form-group">
-            <label>Nombre de la Categoria</label>
-            <input type="text" id="nom" placeholder="Nombre" autocomplete="off" class="form-control">
-          </div>
-          <div class="form-group">
-            <label>Tipo de Categoria</label>
-            <select id="lista" class="form-control">
-              <option value="0">Seleccionar Tipo</option>
+            <label>Cliente</label>
+            <select id="cliente" class="form-control">
+              <option value="0">Seleccionar Cliente</option>
                   <?php
-                          $tipo = $db->select("tipo","*");
-                          foreach ($tipo as $key => $tip) {
+                          $cliente = $db->select("clientes","*");
+                          foreach ($cliente as $key => $cli) {
                       ?>
-                              <option value="<?php echo $tip["tip_id"]?>"><?php echo $tip["tip_nom"]?></option>
+                              <option value="<?php echo $cli["cli_id"]?>"><?php echo $cli["cli_nom"]?></option>
                       <?php
                           }
                       ?>
             </select>
           </div>
+          <div class="form-group">
+            <label>Proyecto</label>
+            <select id="proyecto" class="form-control">
+              <option value="0">Seleccionar Proyecto</option>
+                  <?php
+                          $proyectos = $db->select("proyectos","*");
+                          foreach ($proyectos as $key => $pro) {
+                      ?>
+                              <option value="<?php echo $pro["proy_id"]?>"><?php echo $pro["proy_nom"]?></option>
+                      <?php
+                          }
+                      ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Descripción</label>
+            <input type="text" id="desc" autocomplete="off" placeholder="Descripción" class="form-control">
+          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
-        <button type="button" id="guardarCat" class="btn btn-primary">Guardar</button>
+        <button type="button" id="guardarTar" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>
