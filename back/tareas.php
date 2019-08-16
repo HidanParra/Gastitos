@@ -141,25 +141,39 @@
                         </thead>
                         <tbody>
                           <?php
-                            $cats = $db->select("categorias",["[><]tipo" => ["cat_tip" => "tip_id"]],
-                                                                            ["categorias.cat_id",
-                                                                            "categorias.cat_nom",
-                                                                            "tipo.tip_nom",
-                                                                            "categorias.cat_fa"]);
-                              foreach($cats as $key => $cat){
+                            $i = 1;
+                            $tareas = $db->select("tareas",["[><]proyectos" => ["tar_pro" => "proy_id"],
+                                                            "[><]clientes" =>  ["tar_cli" => "cli_id"]
+                                                                            ],
+                                                                            ["tareas.tar_id",
+                                                                             "proyectos.proy_nom",
+                                                                             "clientes.cli_nom",
+                                                                             "tareas.tar_des",
+                                                                             "tareas.tar_ti",
+                                                                             "tareas.tar_tf",
+                                                                             "tareas.tar_tt",
+                                                                             "tareas.tar_pago",
+                                                                             "tareas.tar_fa"]);
+                              foreach($tareas as $key => $tar){
                           ?>
                           <tr>
-                            <th scope="row"><?php echo $cat["cat_id"];?></th>
-                            <td><?php echo $cat["cat_nom"];?></td>
-                            <td><?php echo $cat["tip_nom"];?></td>
-                            <td><?php echo $cat["cat_fa"];?></td>
+                            <th scope="row"><?php echo $i++;?></th>
+                            <td><?php echo $tar["cli_nom"];?></td>
+                            <td><?php echo $tar["proy_nom"];?></td>
+                            <td><?php echo $tar["tar_des"];?></td>
                             <td>
-                              <a href="#" class="editar_cat" data-id="<?php echo $cat["cat_id"];?>">
+
+                                <button type="button" class="btn btn-success btn-sm" data-id="<?php echo $tar["tar_id"];?>">Iniciar</button>
+
+                            </td>
+                            <td><?php echo $tar["tar_pago"];?></td>
+                            <td>
+                              <a href="#" class="editar_tarea" data-id="<?php echo $tar["tar_id"];?>">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                             </td>
                             <td>
-                              <a href="#" class="eliminar_cat" data-id="<?php echo $cat["cat_id"];?>">
+                              <a href="#" class="eliminar_tarea" data-id="<?php echo $tar["tar_id"];?>">
                               <i class="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                             </td>
@@ -201,7 +215,7 @@
 <div id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
   <div role="document" class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar Categoria</strong>
+      <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Agregar </strong>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">
