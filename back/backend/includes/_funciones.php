@@ -565,15 +565,35 @@ function eliminar_cat(){
   function editar_tarea(){
     extract($_POST);
     global $db;
+
+    $editar=$db->update("tareas",["tar_cli" => $cliente,
+                                  "tar_proy" => $proyecto,
+                                  "tar_des" => $desc],
+                                 ["tar_id" => $id]);
+    if($editar){
+      echo 1;
+    }else{
+      echo 2;
+    }
   }
 
   function consultar_tarea(){
     extract($_POST);
     global $db;
+
+    $consultar=$db->get("tareas","*",["AND" => ["tar_id"=>$id]]);
+    echo json_encode($consultar);
   }
 
   function eliminar_tarea(){
     extract($_POST);
     global $db;
+
+    $eliminar = $db->delete("tareas",["tar_id" => $id]);
+    if($eliminar){
+        echo 1;
+    }else{
+        echo 2;
+    }
   }
 ?>
