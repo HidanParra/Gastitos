@@ -639,9 +639,9 @@ $("#guardarTar").click(function(e){
   $(this).removeData("edicion").removeData("id");
   }
 
-  if(cliente==0 || proyecto==0 || (desc==""){
+  if(cliente==0 || proyecto==0 || desc==""){
     swal("No dejes campos vacios");
-  }else if(desc.length>199){
+  }else if(desc.length>30){
     swal("La descripción no debe ser mayor a 200 letras ");
   }else{
     $.ajax({
@@ -651,7 +651,7 @@ $("#guardarTar").click(function(e){
       data: obj,
       success: function(data){
           if(data==1){
-			      swal("Hecho");
+			      swal("Hecho");}
           if(data==2){
             swal("Ooops! Algo salio mal :( ");
           }
@@ -659,7 +659,56 @@ $("#guardarTar").click(function(e){
     })
     //location.reload();
   }
+});
 
+$(document).on("click", ".tiempo_tarea",function(){
+  swal("Iniciado");
+  id=$(this).data("id");
+  obj={
+    "accion" : "tiempo_tarea",
+    "id" : $(this).data("id")
+  }
+  console.log(obj);
+  $(".tiempo_tarea").text("Detener");
+  $(".tiempo_tarea").toggleClass("btn-danger")
+});
+
+$(document).on("click", ".editar_tarea", function(){
+  id=$(this).data("id");
+  obj={
+    "accion" : "consultar_tarea",
+    "id" : $(this).data("id")
+  }
+  console.log(id);
+  $.post("backend/includes/_funciones.php", obj, function(data){
+    $("#cliente").val(data.tar_cli);
+    $("#proyecto").val(data.tar_pro);
+    $("#desc").val(data.tar_des);
+  }, "JSON");
+
+  $("#guardarTar").text("Actualizar").data("edicion", 1).data("id", id);
+  $(".modal-title").text("Editar Tarea");
+  $("#modal").modal("show");
+
+});
+
+$(document).on("click", ".eliminar_tarea", function(){
+  id=$(this).data("id");
+  let obj = {
+        "accion" : "eliminar_tarea",
+        "id" : id
+    }
+
+  $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "POST",
+      dataType: "json",
+      data: obj,
+      success: function(data){
+          if(data==1){swal("Hecho");}else{swal("Algo salió mal");}
+      }
+  })
+  location.reload();
 });
 
 

@@ -552,7 +552,7 @@ function eliminar_cat(){
     global $db;
 
     $insertar=$db->insert("tareas",["tar_cli" => $cliente,
-                                    "tar_proy" => $proyecto,
+                                    "tar_pro" => $proyecto,
                                     "tar_des" => $desc,
                                     "tar_fa" => date("Y").date("m").date("d")]);
     if($insertar){
@@ -567,7 +567,7 @@ function eliminar_cat(){
     global $db;
 
     $editar=$db->update("tareas",["tar_cli" => $cliente,
-                                  "tar_proy" => $proyecto,
+                                  "tar_pro" => $proyecto,
                                   "tar_des" => $desc],
                                  ["tar_id" => $id]);
     if($editar){

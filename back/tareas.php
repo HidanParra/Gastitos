@@ -162,9 +162,9 @@
                             <td><?php echo $tar["proy_nom"];?></td>
                             <td><?php echo $tar["tar_des"];?></td>
                             <td>
-
-                                <button type="button" class="btn btn-success btn-sm" data-id="<?php echo $tar["tar_id"];?>">Iniciar</button>
-
+                              <a href="#" class="" >
+                                <button type="button" class="btn btn-success tiempo_tarea" data-id="<?php echo $tar["tar_id"];?>">Iniciar</button>
+                              </a>
                             </td>
                             <td><?php echo $tar["tar_pago"];?></td>
                             <td>
