@@ -626,11 +626,13 @@ $("#guardarTar").click(function(e){
   cliente=$("#cliente").val();
   proyecto=$("#proyecto").val();
   desc=$("#desc").val();
+  est=1;
   obj={
     accion: "insertar_tarea",
     cliente: cliente,
     proyecto: proyecto,
-    desc: desc
+    desc: desc,
+    est: est
   }
 
   if($(this).data("edicion")==1){
@@ -665,27 +667,82 @@ $(document).on("click", ".tiempo_inicio",function(){
   swal("Iniciado");
   //$(".tiempo_inicio").text("Iniciado");
   id=$(this).data("id");
+  est=2;
   obj={
     "accion" : "tiempo_inicio",
-    "id" : $(this).data("id")
+    "id" : $(this).data("id"),
+    "est": est
   }
-
-  $("button[value='"+id+"']").toggleClass("btn-danger tiempo_final").text("Detener");
-
+    $.ajax({
+    url: "backend/includes/_funciones.php",
+    type: "POST",
+    dataType: "json",
+    data: obj,
+    success: function(data){
+        if(data==1){
+          swal("Hecho");
+          $("button[value='"+id+"']").toggleClass("btn-danger tiempo_inicio tiempo_final").text("Detener");
+        }
+        if(data==2){
+          swal("Ooops! Algo salio mal :( ");
+        }
+    }
+  })
+  //location.reload();
 });
 
 $(document).on("click", ".tiempo_final",function(){
   //$(".tiempo_final").toggleClass("btn-danger tiempo_final").text("Detener");
-  swal("Detenido");
+  swal("Se ha agregado");
   id=$(this).data("id");
+  est=3;
   obj={
     "accion" : "tiempo_final",
-    "id" : $(this).data("id")
+    "id" : $(this).data("id"),
+    "est": est
   }
+  $.ajax({
+    url: "backend/includes/_funciones.php",
+    type: "POST",
+    dataType: "json",
+    data: obj,
+    success: function(data){
+        if(data==1){
+          swal("Hecho");}
+        if(data==2){
+          swal("Ooops! Algo salio mal :( ");
+        }
+    }
+  })
+  //location.reload();
 
 
   $("button[value='"+id+"']").replaceWith("<p>"+$(this).data("id")+"</p>");
-});
+
+  });
+
+  $(document).on("click", ".tiempo_total",function(){
+    swal("este men");
+    id=$(this).data("id");
+    obj={
+      "accion" : "tiempo_total",
+      "id" : $(this).data("id")
+    }
+    $.ajax({
+      url: "backend/includes/_funciones.php",
+      type: "POST",
+      dataType: "json",
+      data: obj
+      /*success: function(data){
+          if(data==1){
+			      swal("Hecho");}
+          if(data==2){
+            swal("Ooops! Algo salio mal :( ");
+          }
+      }*/
+    })
+    //location.reload();
+  });
 
 
 $(document).on("click", ".editar_tarea", function(){

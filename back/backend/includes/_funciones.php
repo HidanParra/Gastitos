@@ -124,6 +124,9 @@
     case "tiempo_final":
       tiempo_final();
     break;
+    case "tiempo_total":
+      tiempo_total();
+    break;
   }
 }
   //LOGIN
@@ -559,7 +562,8 @@ function eliminar_cat(){
     $insertar=$db->insert("tareas",["tar_cli" => $cliente,
                                     "tar_pro" => $proyecto,
                                     "tar_des" => $desc,
-                                    "tar_fa" => date("Y").date("m").date("d")]);
+                                    "tar_fa" => date("Y").date("m").date("d"),
+                                    "tar_est"=> $est]);
     if($insertar){
       echo 1;
     }else{
@@ -605,9 +609,55 @@ function eliminar_cat(){
   function tiempo_inicio(){
     extract($_POST);
     global $db;
+
+    $actualizar=$db->update("tareas",["tar_ti" => date("Y").date("m").date("d").date("H").date("i").date("s"),
+                                      "tar_est" => $est],
+                                      ["tar_id" => $id]);
+
+    if($actualizar){
+      echo 1;
+    }else{
+      echo 2;
+    }
   }
+
   function tiempo_final(){
     extract($_POST);
     global $db;
+
+    $actualizar=$db->update("tareas",["tar_tf" => date("Y").date("m").date("d").date("H").date("i").date("s"),
+                                      "tar_est" => $est],
+                                      ["tar_id" => $id]);
+
+    if($actualizar){
+      echo 1;
+    }else{
+      echo 2;
+    }
+
+    tiempo_total();
+  }
+
+  function tiempo_total(){
+    extract($_POST);
+    global $db;
+
+    $ti = $db->get("tareas","tar_ti",["tar_id" => $id]);
+    $tf = $db->get("tareas","tar_tf",["tar_id" => $id]);
+
+    echo ("Tiempo inicio ---- $ti");
+    echo ("Tiempo final ---- $tf");
+
+    $inicio = new DateTime($ti);
+    $final = new DateTime($tf);
+
+    $total= $inicio->diff($final);
+
+    $actualizar=$db->update("tareas",["tar_tt" => $total],["tar_id" => $id]);
+
+
+    echo $total->format("Tiempo total----- %H:%I:%S");
+
+
   }
 ?>
