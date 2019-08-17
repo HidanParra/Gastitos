@@ -163,7 +163,7 @@
                             <td><?php echo $tar["tar_des"];?></td>
                             <td>
                               <span value="<?php echo $tar["tar_id"];?>">
-                                <button type="button" class="btn btn-success tiempo_inicio" data-id="<?php echo $tar["tar_id"];?>">Iniciar</button>
+                                <button type="button" value="<?php echo $tar["tar_id"];?>" class="btn btn-success tiempo_inicio" data-id="<?php echo $tar["tar_id"];?>">Iniciar</button>
                               </span>
                             </td>
                             <td><?php echo $tar["tar_pago"];?></td>

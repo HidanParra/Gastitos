@@ -657,25 +657,25 @@ $("#guardarTar").click(function(e){
           }
       }
     })
-    //location.reload();
+    location.reload();
   }
 });
 
 $(document).on("click", ".tiempo_inicio",function(){
   swal("Iniciado");
-  $(".tiempo_inicio").text("Iniciado");
+  //$(".tiempo_inicio").text("Iniciado");
   id=$(this).data("id");
   obj={
     "accion" : "tiempo_inicio",
     "id" : $(this).data("id")
   }
 
-  $(".tiempo_inicio").toggleClass("btn-danger tiempo_final").text("Detener");
+  $("button[value='"+id+"']").toggleClass("btn-danger tiempo_final").text("Detener");
 
 });
 
 $(document).on("click", ".tiempo_final",function(){
-  $(".tiempo_final").toggleClass("btn-danger tiempo_final").text("Detener");
+  //$(".tiempo_final").toggleClass("btn-danger tiempo_final").text("Detener");
   swal("Detenido");
   id=$(this).data("id");
   obj={
@@ -684,7 +684,7 @@ $(document).on("click", ".tiempo_final",function(){
   }
 
 
-  $("span[value='"+id+"']").replaceWith("<p>"+$(this).data("id")+"</p>");
+  $("button[value='"+id+"']").replaceWith("<p>"+$(this).data("id")+"</p>");
 });
 
 

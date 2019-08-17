@@ -118,7 +118,12 @@
     case "consultar_tarea":
       consultar_tarea();
     break;
-
+    case "tiempo_inicio":
+      tiempo_inicio();
+    break;
+    case "tiempo_final":
+      tiempo_final();
+    break;
   }
 }
   //LOGIN
@@ -595,5 +600,14 @@ function eliminar_cat(){
     }else{
         echo 2;
     }
+  }
+
+  function tiempo_inicio(){
+    extract($_POST);
+    global $db;
+  }
+  function tiempo_final(){
+    extract($_POST);
+    global $db;
   }
 ?>
