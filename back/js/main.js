@@ -688,7 +688,7 @@ $(document).on("click", ".tiempo_inicio",function(){
         }
     }
   })
-  //location.reload();
+  location.reload();
 });
 
 $(document).on("click", ".tiempo_final",function(){
@@ -708,16 +708,16 @@ $(document).on("click", ".tiempo_final",function(){
     data: obj,
     success: function(data){
         if(data==1){
-          swal("Hecho");}
+          swal("Hecho");
+          
+        }
         if(data==2){
           swal("Ooops! Algo salio mal :( ");
         }
     }
   })
-  //location.reload();
-
-
-  $("button[value='"+id+"']").replaceWith("<p>"+$(this).data("id")+"</p>");
+    location.reload();
+  //$("button[value='"+id+"']").replaceWith("<p>"+$(this).data("id")+"</p>");
 
   });
 
@@ -725,21 +725,21 @@ $(document).on("click", ".tiempo_final",function(){
     swal("este men");
     id=$(this).data("id");
     obj={
-      "accion" : "tiempo_total",
+      "accion" : "consultar_tarea",
       "id" : $(this).data("id")
     }
     $.ajax({
       url: "backend/includes/_funciones.php",
       type: "POST",
       dataType: "json",
-      data: obj
-      /*success: function(data){
+      data: obj,
+      success: function(data){
           if(data==1){
 			      swal("Hecho");}
           if(data==2){
             swal("Ooops! Algo salio mal :( ");
           }
-      }*/
+      }
     })
     //location.reload();
   });

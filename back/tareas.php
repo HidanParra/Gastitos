@@ -127,13 +127,29 @@
                     </div>
                     <div class="table-responsive">
                       <table class="table table-striped table-hover">
+                        <?php
+                        $i = 1;
+                        $tareas = $db->select("tareas",["[><]proyectos" => ["tar_pro" => "proy_id"],
+                                                        "[><]clientes" =>  ["tar_cli" => "cli_id"]
+                                                                        ],
+                                                                        ["tareas.tar_id",
+                                                                         "proyectos.proy_nom",
+                                                                         "clientes.cli_nom",
+                                                                         "tareas.tar_des",
+                                                                         "tareas.tar_ti",
+                                                                         "tareas.tar_tf",
+                                                                         "tareas.tar_tt",
+                                                                         "tareas.tar_pago",
+                                                                         "tareas.tar_est",
+                                                                         "tareas.tar_fa"]);
+                         ?>
                         <thead>
                           <tr>
                             <th>#</th>
                             <th>Cliente</th>
                             <th>Proyecto</th>
                             <th>Descripción</th>
-                            <th>Tiempo</th>
+                            <th>Minutos</th>
                             <th>Pago</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
@@ -141,19 +157,6 @@
                         </thead>
                         <tbody>
                           <?php
-                            $i = 1;
-                            $tareas = $db->select("tareas",["[><]proyectos" => ["tar_pro" => "proy_id"],
-                                                            "[><]clientes" =>  ["tar_cli" => "cli_id"]
-                                                                            ],
-                                                                            ["tareas.tar_id",
-                                                                             "proyectos.proy_nom",
-                                                                             "clientes.cli_nom",
-                                                                             "tareas.tar_des",
-                                                                             "tareas.tar_ti",
-                                                                             "tareas.tar_tf",
-                                                                             "tareas.tar_tt",
-                                                                             "tareas.tar_pago",
-                                                                             "tareas.tar_fa"]);
                               foreach($tareas as $key => $tar){
                           ?>
                           <tr>
@@ -162,9 +165,33 @@
                             <td><?php echo $tar["proy_nom"];?></td>
                             <td><?php echo $tar["tar_des"];?></td>
                             <td>
+                              <?php
+                                if($tar["tar_est"]==1){
+                              ?>
                               <span value="<?php echo $tar["tar_id"];?>">
                                 <button type="button" value="<?php echo $tar["tar_id"];?>" class="btn btn-success tiempo_inicio" data-id="<?php echo $tar["tar_id"];?>">Iniciar</button>
                               </span>
+                              <?php
+                              }
+                               ?>
+                               <?php
+                                 if($tar["tar_est"]==2){
+                               ?>
+                               <span value="<?php echo $tar["tar_id"];?>">
+                                 <button type="button" value="<?php echo $tar["tar_id"];?>" class="btn btn-danger tiempo_final" data-id="<?php echo $tar["tar_id"];?>">Detener</button>
+                               </span>
+                               <?php
+                               }
+                                ?>
+                                <?php
+                                  if($tar["tar_est"]==3){
+                                ?>
+                                <span value="<?php echo $tar["tar_id"];?>">
+                                  <p><?php echo $tar["tar_tt"];?></p>
+                                </span>
+                                <?php
+                                }
+                                 ?>
                             </td>
                             <td><?php echo $tar["tar_pago"];?></td>
                             <td>

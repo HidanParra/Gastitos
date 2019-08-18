@@ -635,12 +635,13 @@ function eliminar_cat(){
       echo 2;
     }
 
-    tiempo_total();
+    tiempo_total($id);
   }
 
-  function tiempo_total(){
+  function tiempo_total($id){
     extract($_POST);
     global $db;
+
 
     $ti = $db->get("tareas","tar_ti",["tar_id" => $id]);
     $tf = $db->get("tareas","tar_tf",["tar_id" => $id]);
@@ -652,12 +653,19 @@ function eliminar_cat(){
     $final = new DateTime($tf);
 
     $total= $inicio->diff($final);
+    $m = $total->format("%H:%I:%S");
 
-    $actualizar=$db->update("tareas",["tar_tt" => $total],["tar_id" => $id]);
+    $actualizart=$db->update("tareas",["tar_tt" => $m],["tar_id" => $id]);
+
+    if($actualizart){
+
+      echo ("logrado");
+    }else {
+      echo ("no logrado");
+    }
 
 
-    echo $total->format("Tiempo total----- %H:%I:%S");
-
+    echo $m;
 
   }
 ?>
