@@ -127,6 +127,9 @@
     case "tiempo_total":
       tiempo_total();
     break;
+    case "pagoXhora":
+      pagoXhora();
+    break;
   }
 }
   //LOGIN
@@ -629,16 +632,21 @@ function eliminar_cat(){
                                       "tar_est" => $est],
                                       ["tar_id" => $id]);
 
+    tiempo_total();
+
+    pagoXhora();
+    
+
     if($actualizar){
       echo 1;
+      //header("Location: ../../tareas.php");
     }else{
       echo 2;
     }
-
-    tiempo_total($id);
+    header("Location: ../../tareas.php");
   }
 
-  function tiempo_total($id){
+  function tiempo_total(){
     extract($_POST);
     global $db;
 
@@ -657,15 +665,53 @@ function eliminar_cat(){
 
     $actualizart=$db->update("tareas",["tar_tt" => $m],["tar_id" => $id]);
 
-    if($actualizart){
+  /*  if($actualizart){
 
-      echo ("logrado");
+      echo 1;
     }else {
-      echo ("no logrado");
+      echo 2;
     }
 
 
-    echo $m;
+    echo $m;*/
+
+  }
+
+  function pagoXhora(){
+    extract($_POST);
+    global $db;
+
+    $pago = $db->get("tareas",["[><]proyectos" => ["tar_pro" => "proy_id"]],"proy_bh",["tar_id"=>$id]);
+    $tiempo = $db->get("tareas","tar_tt",["tar_id" => $id]);
+
+    echo ("   Pagoo $pago");
+    echo ("  Tiempo: $tiempo ");
+
+  /*  $a_tiempo = str_replace(':','/',$tiempo);
+    $b_tiempo = strtotime($a_tiempo);
+    $c_tiempo = idate('i',$b_tiempo);
+    echo ("  SD: $c_tiempo ");*/
+
+    $a= new DateTime($tiempo);
+    $aa = $a->format("H");
+    echo ("  Hora: $aa");
+
+    if($aa == '00' ){
+      $hora = (int)$aa + 01;
+    }else{
+      $hora = (int)$aa;
+    }
+
+    //echo ("  Hora: $hora");
+    $p = (int)$pago;
+    $h =  (int)$hora;
+
+    $pxh =  $p*$h;
+
+    echo ("  A pagar:  $pxh");
+
+    $actualizar = $db->update("tareas",["tar_pago" => $pxh],["tar_id" => $id]);
+    header("Location: ../../tareas.php");
 
   }
 ?>

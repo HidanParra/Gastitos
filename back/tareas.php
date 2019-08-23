@@ -128,6 +128,7 @@
                     <div class="table-responsive">
                       <table class="table table-striped table-hover">
                         <?php
+
                         $i = 1;
                         $tareas = $db->select("tareas",["[><]proyectos" => ["tar_pro" => "proy_id"],
                                                         "[><]clientes" =>  ["tar_cli" => "cli_id"]
@@ -149,7 +150,7 @@
                             <th>Cliente</th>
                             <th>Proyecto</th>
                             <th>Descripción</th>
-                            <th>Minutos</th>
+                            <th>Horas</th>
                             <th>Pago</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
@@ -187,7 +188,16 @@
                                   if($tar["tar_est"]==3){
                                 ?>
                                 <span value="<?php echo $tar["tar_id"];?>">
-                                  <p><?php echo $tar["tar_tt"];?></p>
+                                  <p>&nbsp;&nbsp;
+                                  <?php
+                                  $im = new DateTime($tar["tar_tt"]);
+                                  $im2 = $im->format('H');
+                                  if($im2 == '00' ){
+                                    $im2 = '01';
+                                  }
+                                  echo $im2;
+                                  ?>
+                                </p>
                                 </span>
                                 <?php
                                 }

@@ -1,3 +1,4 @@
+var yop=0;
 $(document).ready(function(){
 //CARGAR FOTOS
 $("#archivo").change(function(){
@@ -693,7 +694,7 @@ $(document).on("click", ".tiempo_inicio",function(){
 
 $(document).on("click", ".tiempo_final",function(){
   //$(".tiempo_final").toggleClass("btn-danger tiempo_final").text("Detener");
-  swal("Se ha agregado");
+  //swal("Se ha agregado");
   id=$(this).data("id");
   est=3;
   obj={
@@ -709,21 +710,19 @@ $(document).on("click", ".tiempo_final",function(){
     success: function(data){
         if(data==1){
           swal("Hecho");
-          
-        }
-        if(data==2){
+          location.reload(true);
+        }else{
           swal("Ooops! Algo salio mal :( ");
         }
     }
-  })
-    location.reload();
-  //$("button[value='"+id+"']").replaceWith("<p>"+$(this).data("id")+"</p>");
-
+    })
+    location.reload(true);
   });
 
-  $(document).on("click", ".tiempo_total",function(){
+  $(document).on("change", ".prueba",function(){
     swal("este men");
-    id=$(this).data("id");
+    });
+    /*id=$(this).data("id");
     obj={
       "accion" : "consultar_tarea",
       "id" : $(this).data("id")
@@ -742,7 +741,7 @@ $(document).on("click", ".tiempo_final",function(){
       }
     })
     //location.reload();
-  });
+  */
 
 
 $(document).on("click", ".editar_tarea", function(){
