@@ -189,14 +189,14 @@
                                   if($tar["tar_est"]==3){
                                 ?>
                                 <span value="<?php echo $tar["tar_id"];?>">
-                                  <p>&nbsp;&nbsp;
+                                  <p>
                                   <?php
                                   $im = new DateTime($tar["tar_tt"]);
                                   $im2 = $im->format('H');
                                   if($im2 == '00' ){
                                     $im2 = '01';
                                   }
-                                  echo $im2;
+                                  echo ($im2);
                                   ?>
                                 </p>
                                 </span>
@@ -207,10 +207,12 @@
                             <td>
                               <?php
                               if($tar["tar_est"]==3){
+                                $idm = $tar["tar_id"];
                                 $pago = (int) $tar["proy_bh"];
                                 $hora = (int) $im2;
                                 //$pago = (int) $tar["tar_pago"];
                                 $pxh = $hora * $pago;
+                                $insertar = $db->update("tareas",["tar_pago" => $pxh], ["tar_id" => $idm]);
                                 echo ("$ $pxh");
                               }else{
                                 echo ("¿?");
