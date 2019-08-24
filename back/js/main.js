@@ -719,31 +719,6 @@ $(document).on("click", ".tiempo_final",function(){
     location.reload(true);
   });
 
-  $(document).on("change", ".prueba",function(){
-    swal("este men");
-    });
-    /*id=$(this).data("id");
-    obj={
-      "accion" : "consultar_tarea",
-      "id" : $(this).data("id")
-    }
-    $.ajax({
-      url: "backend/includes/_funciones.php",
-      type: "POST",
-      dataType: "json",
-      data: obj,
-      success: function(data){
-          if(data==1){
-			      swal("Hecho");}
-          if(data==2){
-            swal("Ooops! Algo salio mal :( ");
-          }
-      }
-    })
-    //location.reload();
-  */
-
-
 $(document).on("click", ".editar_tarea", function(){
   id=$(this).data("id");
   obj={

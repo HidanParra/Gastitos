@@ -135,6 +135,7 @@
                                                                         ],
                                                                         ["tareas.tar_id",
                                                                          "proyectos.proy_nom",
+                                                                         "proyectos.proy_bh",
                                                                          "clientes.cli_nom",
                                                                          "tareas.tar_des",
                                                                          "tareas.tar_ti",
@@ -203,7 +204,19 @@
                                 }
                                  ?>
                             </td>
-                            <td><?php echo $tar["tar_pago"];?></td>
+                            <td>
+                              <?php
+                              if($tar["tar_est"]==3){
+                                $pago = (int) $tar["proy_bh"];
+                                $hora = (int) $im2;
+                                //$pago = (int) $tar["tar_pago"];
+                                $pxh = $hora * $pago;
+                                echo ("$ $pxh");
+                              }else{
+                                echo ("¿?");
+                              }
+                              ?>
+                            </td>
                             <td>
                               <a href="#" class="editar_tarea" data-id="<?php echo $tar["tar_id"];?>">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

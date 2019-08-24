@@ -633,17 +633,16 @@ function eliminar_cat(){
                                       ["tar_id" => $id]);
 
     tiempo_total();
-
-    pagoXhora();
-    
+    //pagoXhora();
+    //excusa();
 
     if($actualizar){
       echo 1;
-      //header("Location: ../../tareas.php");
+
     }else{
       echo 2;
     }
-    header("Location: ../../tareas.php");
+
   }
 
   function tiempo_total(){
@@ -664,6 +663,7 @@ function eliminar_cat(){
     $m = $total->format("%H:%I:%S");
 
     $actualizart=$db->update("tareas",["tar_tt" => $m],["tar_id" => $id]);
+
 
   /*  if($actualizart){
 
@@ -710,8 +710,18 @@ function eliminar_cat(){
 
     echo ("  A pagar:  $pxh");
 
-    $actualizar = $db->update("tareas",["tar_pago" => $pxh],["tar_id" => $id]);
+    //$actualizar = $db->update("tareas",["tar_pago" => $pxh],["tar_id" => $id]);
     header("Location: ../../tareas.php");
 
+  }
+  function excusa(){
+    $erfes = 2;
+    $erfes + 7;
+
+    if($erfes==9){
+      echo("   Yeah   ");
+    }
+
+    header("Location: ../../tareas.php");
   }
 ?>
